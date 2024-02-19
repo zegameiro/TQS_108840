@@ -1,31 +1,44 @@
 package pt.deti.ua;
 
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
-public class TqsStack<T> {
+public class TqsStack<T> implements Stack<T> {
+
     private LinkedList<T> collection;
 
     public TqsStack() {
         this.collection = new LinkedList<>();
     }
 
+    @Override
     public T pop() {
-        return null;
+        if(isEmpty())
+            throw new NoSuchElementException();
+
+        return collection.removeLast();
     }
 
+    @Override
     public int size() {
-        return 0;
+        return collection.size();
     }
 
+    @Override
     public T peek() {
-        return null;
+        if(isEmpty())
+            throw new NoSuchElementException();
+            
+        return collection.getLast();
     }
 
+    @Override
     public void push(T arg) {
         collection.add(arg);
     }
 
+    @Override
     public boolean isEmpty() {
-        return true;
+        return collection.isEmpty();
     }
 }

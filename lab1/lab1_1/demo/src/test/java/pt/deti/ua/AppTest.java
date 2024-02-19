@@ -2,20 +2,17 @@ package pt.deti.ua;
 
 import org.junit.jupiter.api.Test;
 
-import static java.lang.invoke.MethodHandles.lookup;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.slf4j.LoggerFactory.getLogger;
+
+import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.slf4j.Logger;
 
 public class AppTest {
-
-    static final Logger log =getLogger(lookup().lookupClass());
 
     @SuppressWarnings("rawtypes")
     TqsStack stack;
@@ -81,6 +78,7 @@ public class AppTest {
         stack.push(3);
 
         Assertions.assertAll(
+            () -> assertEquals(3, stack.size()),
             () -> assertEquals(3, stack.pop()),
             () -> assertEquals(2, stack.pop()),
             () -> assertEquals(1, stack.pop()),
@@ -90,4 +88,24 @@ public class AppTest {
 
     }
 
+    @DisplayName("Popping from an empty stack does throw a NoSuchElementException")
+    @Test
+    public void checkPopEmpty() {
+        Assertions.assertThrows(NoSuchElementException.class, () -> stack.pop());
+    }
+
+    @DisplayName("Peeking into an empty stack does throw a NoSuchElementException")
+    @Test
+    public void checkPeekEmpty() {
+        Assertions.assertThrows(NoSuchElementException.class, () -> stack.peek());
+    }
+
+    @DisplayName("For bounded stacks only: pushing onto a full stack does throw an IllegalStateException")
+    @Test
+    public void checkPushBoundStack() {
+        Stack<Integer> bStack = new BoundedStack<>(2);
+        bStack.push(1);
+        bStack.push(2);
+        Assertions.assertThrows(IllegalStateException.class, () -> bStack.push(3));
+    }
 }

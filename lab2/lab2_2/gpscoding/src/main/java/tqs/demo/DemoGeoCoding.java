@@ -34,7 +34,7 @@ public class DemoGeoCoding {
 
         try {
             AddressResolverService resolver =new AddressResolverService( new TqsBasicHttpClient());
-            
+
             Optional<Address> result = resolver.findAddressForLocation(40.63436, -8.65616);;
             log.info("Result: ".concat( result.get().toString() ) );
 

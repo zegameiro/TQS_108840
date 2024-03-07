@@ -60,6 +60,13 @@ spring.datasource.password=demo
 
 If we decided to run the integration tests against H2, we could just change the above values.
 
------------------------- voltar aqui ----------------------------
-
 ### e) The sample project demonstrates three test strategies to assess an API (C, D and E) developed with SpringBoot. Which are the main/key differences?
+
+The main differences between the three strategies (C, D and E) for assessing a SpringBoot API are centered around the scope of the aplication context they load, the level of integration they simulate, and the way they interact with the application's components.
+
+Notes:
+- The strategy C uses the @WebMvcTest annotation for focused unit tests on the web layer, mocking out other components;
+
+- The strategy D uses the @SpringBootTest annotation with a @MockMvc for integration testing that involves interactions between different layers of the application;
+
+- The strategy E uses the @SpringBootTest annotation with a @TestRestTemplate for end-to-end testing that simulates real HTTP requests and responses.

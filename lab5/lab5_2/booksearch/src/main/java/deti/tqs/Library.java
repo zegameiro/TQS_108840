@@ -12,7 +12,11 @@ public class Library {
     private final List<Book> store = new ArrayList<>();
 
     public void addBook(final Book book) {
-        store.add(book);
+        store.add(book);    
+    }
+
+    public void removeBook(final Book book) {
+        store.remove(book);
     }
 
     public List<Book> findBooks(final LocalDateTime from, final LocalDateTime to) {

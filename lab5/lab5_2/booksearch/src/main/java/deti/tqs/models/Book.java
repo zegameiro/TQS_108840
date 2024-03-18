@@ -13,6 +13,12 @@ public class Book {
     this.publishDate = publishDate;
   }
 
+  public  Book(String title, String author) {
+    this.title = title;
+    this.author = author;
+    this.publishDate = LocalDateTime.now();
+  }
+
   public String getTitle() {
     return title;
   }

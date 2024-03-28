@@ -1,5 +1,7 @@
 package deti.tqs.backend.models;
 
+import java.util.Random;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,7 +33,7 @@ public class Reservation {
   @Column(name = "phone", nullable = false, length = 9)
   private String phone;
 
-  @Column(name = "isPaid", nullable = false)
+  @Column(columnDefinition = "boolean default false",  name = "isPaid", nullable = false)
   private boolean isPaid;
 
   public Reservation() {}
@@ -75,6 +77,10 @@ public class Reservation {
 
   public void setId(long id) {
     this.id = id;
+  }
+
+  public void setId() {
+    this.id = new Random().nextLong();
   }
 
   public void setIdBusTrip(long idBusTrip) {

@@ -25,4 +25,8 @@ public class ReservationService {
   public Reservation findById(long id) {
     return reservationRepository.findById(id);
   }
+
+  public void deleteReservation(Reservation reservation) {
+    reservationRepository.delete(reservation);
+  }
 }

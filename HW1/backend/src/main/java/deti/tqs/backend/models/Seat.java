@@ -1,0 +1,49 @@
+package deti.tqs.backend.models;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "seat")
+public class Seat {
+  
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
+  private String seatType = "economic";
+  private boolean isTaken;
+
+  public Seat() {}
+
+  public Seat(String seatType, boolean isTaken) {
+    this.seatType = seatType;
+    this.isTaken = isTaken;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public String getSeatType() {
+    return seatType;
+  }
+
+  public boolean getIsTaken() {
+    return isTaken;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public void setSeatType(String seatType) {
+    this.seatType = seatType;
+  }
+
+  public void setIsTaken(boolean isTaken) {
+    this.isTaken = isTaken;
+  }
+}

@@ -1,95 +1,96 @@
 package deti.tqs.backend.models;
 
-import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "bus_trip")
 public class BusTrip {
   
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private int id;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "idFromCity")
-  private long idFromCity;
+  private int busId;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "idToCity")
-  private long idToCity;
-
-  @Column(name = "price", nullable = false)
+  @OneToMany(cascade = CascadeType.PERSIST)
+  private List<Seat> seats;
+  private String fromCity;
+  private String toCity;
   private double price;
-
-  @Column(name = "date", nullable = false)
-  private Date date;
-
-  @Column(name = "availableSeats", nullable = false)
-  private int availableSeats;
+  private String date;
+  private String time;
 
   public BusTrip() {}
 
-  public BusTrip(long idFromCity, long idToCity, double price, Date date, int availableSeats) {
-    this.idFromCity = idFromCity;
-    this.idToCity = idToCity;
-    this.price = price;
-    this.date = date;
-    this.availableSeats = availableSeats;
-  }
-
-  public long getId() {
+  public int getId() {
     return id;
   }
 
-  public long getId_fromCity() {
-    return idFromCity;
+  public int getBusId() {
+    return busId;
   }
 
-  public long getId_toCity() {
-    return idToCity;
+  public String getFromCity() {
+    return fromCity;
+  }
+
+  public String getToCity() {
+    return toCity;
+  }
+
+  public List<Seat> getSeats() {
+    return seats;
   }
 
   public double getPrice() {
     return price;
   }
 
-  public Date getDate() {
+  public String getTime() {
+    return time;
+  }
+
+  public String getDate() {
     return date;
   }
 
-  public int getAvailableSeats() {
-    return availableSeats;
-  }
-
-  public void setId(long id) {
+  public void setId(int id) {
     this.id = id;
   }
 
-  public void setId_fromCity(long id_fromCity) {
-    this.idFromCity = id_fromCity;
+  public void setBusId(int busId) {
+    this.busId = busId;
   }
 
-  public void setId_toCity(long id_toCity) {
-    this.idToCity = id_toCity;
+  public void setFromCity(String fromCity) {
+    this.fromCity = fromCity;
+  }
+
+  public void setSeats(List<Seat> seats) {
+    this.seats = seats;
+  }
+
+  public void setToCity(String toCity) {
+    this.toCity = toCity;
   }
 
   public void setPrice(double price) {
     this.price = price;
   }
 
-  public void setDate(Date date) {
-    this.date = date;
+  public void setTime(String time) {
+    this.time = time;
   }
 
-  public void setAvailableSeats(int availableSeats) {
-    this.availableSeats = availableSeats;
+  public void setDate(String date) {
+    this.date = date;
   }
 }

@@ -1,6 +1,8 @@
 package deti.tqs.backend.repositories;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -8,16 +10,34 @@ import java.util.List;
 import deti.tqs.backend.models.BusTrip;
 
 @Repository
-public interface BusTripRepository extends CrudRepository<BusTrip, Long>{
+public interface BusTripRepository extends CrudRepository<BusTrip, Integer>{
   
+  @Query("SELECT bustrip FROM BusTrip bustrip WHERE (:fromCity IS NULL OR bustrip.fromCity = :fromCity) AND (:toCity IS NULL OR bustrip.toCity = :toCity) AND (:date IS NULL OR bustrip.date = :date)")
+  public List<BusTrip> findByFromCityAndToCityAndDate(@Param("fromCity") String fromCity, @Param("toCity") String toCity, @Param("date") String date);
+
+  @Query("SELECT DISTINCT bustrip.date FROM BusTrip bustrip")
+  public List<String> findDates();
+
+  @Query("SELECT DISTINCT bustrip.fromCity FROM BusTrip bustrip")
+  public List<String> findFromCities();
+
+  @Query("SELECT DISTINCT bustrip.toCity FROM BusTrip bustrip")
+  public List<String> findToCities();
+
+  public BusTrip findById(int id);
+
   public List<BusTrip> findAll();
 
-  public BusTrip findById(long id);
+  public List<BusTrip> findByFromCity(String fromCity);
 
-  public List<BusTrip> findByIdFromCity(long idFromCity);
+  public List<BusTrip> findByToCity(String toCity);
 
-  public List<BusTrip> findByIdToCity(long idToCity);
+  public List<BusTrip> findByDate(String date);
 
-  public List<BusTrip> findByIdFromCityAndIdToCity(long idFromCity, long idToCity);
+  public List<BusTrip> findByTime(String time);
+
+  public void deleteByFromCity(String fromCity);
+
+  public void deleteByToCity(String toCity);
   
 }

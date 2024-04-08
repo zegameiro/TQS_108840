@@ -11,7 +11,7 @@ import deti.tqs.backend.models.Reservation;
 @Repository
 public interface ReservationRepository extends CrudRepository<Reservation, Integer> {
 
-  public Reservation findById(long id);
+  public Reservation findById(int id);
 
   public List<Reservation> findByIdBusTrip(int idBusTrip);
 

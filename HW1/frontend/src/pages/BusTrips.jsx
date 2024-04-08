@@ -120,7 +120,7 @@ const BusTrips = () => {
                       {busTrip.seats.filter((seat) => !seat.isTaken).length}
                     </td>
                     <td>
-                      <button className="btn btn-sm btn-outline btn-primary">
+                      <button className="btn btn-sm btn-outline btn-primary" onClick={() => navigate(`/reservation?id=${busTrip.id}`)}>
                         Choose Trip
                       </button>
                     </td>

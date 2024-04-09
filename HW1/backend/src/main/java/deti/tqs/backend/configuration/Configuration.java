@@ -2,6 +2,7 @@ package deti.tqs.backend.configuration;
 
 import java.util.ArrayList;
 
+import org.hibernate.mapping.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,10 +87,9 @@ public class Configuration implements ApplicationRunner {
     ArrayList<Seat> seats1 = new ArrayList<>(bus1.getCapacity());
 
     for (int i = 0; i < bus1.getCapacity(); i++) {
-      seats1.add(new Seat());
-      if (i % 5 == 0) {
-        seats1.get(i).setSeatType(firstClass);
-      }
+      Seat seat1 = new Seat();
+      setSeatsType(seat1, i, 6);
+      seats1.add(seat1);
     }
 
     busTrip1.setSeats(seats1);
@@ -105,10 +105,9 @@ public class Configuration implements ApplicationRunner {
     ArrayList<Seat> seats2 = new ArrayList<>(bus2.getCapacity());
 
     for (int i = 0; i < bus2.getCapacity(); i++) {
-      seats2.add(new Seat());
-      if (i % 4 == 0) {
-        seats2.get(i).setSeatType(firstClass);
-      }
+      Seat seat2 = new Seat();
+      setSeatsType(seat2, i, 5);
+      seats2.add(seat2);
     }
 
     busTrip2.setSeats(seats2);
@@ -124,10 +123,9 @@ public class Configuration implements ApplicationRunner {
     ArrayList<Seat> seats3 = new ArrayList<>(bus3.getCapacity());
 
     for (int i = 0; i < bus3.getCapacity(); i++) {
-      seats3.add(new Seat());
-      if (i % 7 == 0) {
-        seats3.get(i).setSeatType(firstClass);
-      }
+      Seat seat3 = new Seat();
+      setSeatsType(seat3, i, 7);
+      seats3.add(seat3);
     }
 
     busTrip3.setSeats(seats3);
@@ -144,10 +142,9 @@ public class Configuration implements ApplicationRunner {
     ArrayList<Seat> seats4 = new ArrayList<>(bus4.getCapacity());
 
     for (int i = 0; i < bus4.getCapacity(); i++) {
-      seats4.add(new Seat());
-      if (i % 3 == 0) {
-        seats4.get(i).setSeatType(firstClass);
-      }
+      Seat seat4 = new Seat();
+      setSeatsType(seat4, i, 4);
+      seats4.add(seat4);
     }
 
     busTrip4.setSeats(seats4);
@@ -164,10 +161,9 @@ public class Configuration implements ApplicationRunner {
     ArrayList<Seat> seats5 = new ArrayList<>(bus5.getCapacity());
 
     for (int i = 0; i < bus5.getCapacity(); i++) {
-      seats5.add(new Seat());
-      if (i % 6 == 0) {
-        seats5.get(i).setSeatType(firstClass);
-      }
+      Seat seat5 = new Seat();
+      setSeatsType(seat5, i, 6);
+      seats5.add(seat5);
     }
 
     busTrip5.setSeats(seats5);
@@ -184,10 +180,9 @@ public class Configuration implements ApplicationRunner {
     ArrayList<Seat> seats6 = new ArrayList<>(bus6.getCapacity());
 
     for (int i = 0; i < bus6.getCapacity(); i++) {
-      seats6.add(new Seat());
-      if (i % 9 == 0) {
-        seats6.get(i).setSeatType(firstClass);
-      }
+      Seat seat6 = new Seat();
+      setSeatsType(seat6, i, 9);
+      seats6.add(seat6);
     }
 
     busTrip6.setSeats(seats6);
@@ -200,5 +195,12 @@ public class Configuration implements ApplicationRunner {
     busTripRepository.save(busTrip6);
 
     logger.info("Bus trips created");
+  }
+
+  public void setSeatsType(Seat seat, int index, int divisor) {
+
+    if (index % divisor == 0)
+      seat.setSeatType("First Class");
+
   }
 }

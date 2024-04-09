@@ -49,7 +49,9 @@ public class BusTripService {
   }
 
   public List<BusTrip> listFilteredTrips(String fromCity, String toCity, String date, String currency) {
-    List<BusTrip> trips = new ArrayList<BusTrip>();
+    
+    List<BusTrip> trips = new ArrayList<>();
+
     trips = busTripRepository.findByFromCityAndToCityAndDate(fromCity, toCity, date);
 
     if (currency == null || currency.equals("EUR")) 
@@ -88,4 +90,4 @@ public class BusTripService {
   public List<String> getToCities() {
     return busTripRepository.findToCities();
   }
-}
+} 

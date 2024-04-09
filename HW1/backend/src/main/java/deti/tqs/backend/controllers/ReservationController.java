@@ -15,11 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import deti.tqs.backend.models.Bus;
 import deti.tqs.backend.models.BusTrip;
 import deti.tqs.backend.models.Reservation;
 import deti.tqs.backend.models.Seat;
-import deti.tqs.backend.services.BusService;
 import deti.tqs.backend.services.BusTripService;
 import deti.tqs.backend.services.ReservationFormValidator;
 import deti.tqs.backend.services.ReservationService;
@@ -33,9 +31,6 @@ public class ReservationController {
 
   @Autowired
   private ReservationService reservationService;
-
-  @Autowired
-  private BusService busService;
 
   @Autowired
   private BusTripService busTripService;
@@ -69,39 +64,17 @@ public class ReservationController {
       logger.error("Could not find trip with id " + reservation.getIdBusTrip());
       throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Trip not found!");
     }
-
-    int requestedSeat = reservation.getSeat();
     
-    if (requestedSeat < 1 || requestedSeat > busTrip.getSeats().size()) {
-      logger.error("Invalid seat number");
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid seat number!");
-    }
-
-    reservation.setSeat(requestedSeat + 1);
-
-    Bus tripBus = busService.getBusById(busTrip.getBusId());
-
-    int givenSeat = reservation.getSeat();
+    int requestedSeat = reservation.getSeat() - busTrip.getSeats().get(0).getId();
+    reservation.setSeat(requestedSeat);
 
     List<Seat> seats = busTrip.getSeats();
 
-    Seat seat = seats.get(givenSeat);
+    Seat seat = seats.get(requestedSeat); 
 
     if (seat.getIsTaken()) {
       logger.error("Seat already taken");
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Seat already taken!");
-    }
-
-    int seatsTaken = 0;
-
-    for(Seat s: seats) {
-      if (s.getIsTaken())
-        seatsTaken++;
-    }
-
-    if (seatsTaken >= tripBus.getCapacity()) {
-      logger.error("Bus is full");
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bus is full!");
     }
 
     Reservation r = reservationService.buyReservation(reservation);

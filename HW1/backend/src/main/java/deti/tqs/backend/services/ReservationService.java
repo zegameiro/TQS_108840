@@ -45,8 +45,8 @@ public class ReservationService {
       BusTrip bustrip = busTripRepository.findById(reservation.getIdBusTrip());
 
       bustrip.getSeats().get(reservation.getSeat() - 1).setIsTaken(true);
-
       busTripRepository.save(bustrip);
+      reservationRepository.save(reservation);
 
       logger.info("Reservation bought successfully");
 

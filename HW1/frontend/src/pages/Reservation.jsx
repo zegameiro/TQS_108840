@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 
@@ -8,7 +8,6 @@ import { API_URL } from "../api";
 import {  FaLocationDot } from "react-icons/fa6";
 
 const Reservation = () => {
-  const navigate = useNavigate();
   const [busTrip, setBusTrip] = useState({});
   const [busInfo, setBusInfo] = useState({});
   const [selectedSeat, setSelectedSeat] = useState(null);
@@ -131,6 +130,7 @@ const Reservation = () => {
                 </div>
                 <input
                   type="text"
+                  id="first_name"
                   placeholder="Ex: John"
                   className="input input-bordered bg-slate-200 w-[30rem] text-black"
                   onChange={(e) => setFirstName(e.target.value)}
@@ -142,6 +142,7 @@ const Reservation = () => {
                 </div>
                 <input
                   type="text"
+                  id="last_name"
                   placeholder="ex: Smith"
                   className="input input-bordered bg-slate-200 w-[30rem] text-black"
                   onChange={(e) => setLastName(e.target.value)}
@@ -153,6 +154,7 @@ const Reservation = () => {
                 </div>
                 <input
                   type="email"
+                  id="email"
                   placeholder="ex: name@domain.com"
                   className="input input-bordered bg-slate-200 w-[30rem] text-black"
                   onChange={(e) => setEmail(e.target.value)}
@@ -164,18 +166,21 @@ const Reservation = () => {
                 </div>
                 <input
                   type="number"
+                  id="phone_number"
                   placeholder="ex:123456789"
                   className="input input-bordered bg-slate-200 w-[30rem] text-black"
                   onChange={(e) => setPhoneNumber(e.target.value)}
                 />
               </label>
               {firstName && lastName && phoneNumber && email && selectedSeat && (
-                <button
-                  className="btn btn-outline btn-success"
-                  onClick={(e) => e.preventDefault() & buyReservation() & navigate("/myreservations")}
-                >
-                  Buy reservation
-                </button>
+                <Link to="/myreservations">
+                  <button
+                    className="btn btn-outline btn-success"
+                    onClick={() => buyReservation()}
+                  >
+                    Buy reservation
+                  </button>
+                </Link>
               )}
             </div>
 
@@ -184,6 +189,7 @@ const Reservation = () => {
                 (seat, index) => (
                   <button
                     disabled={seat.isTaken}
+                    id={index}
                     className={`btn ${
                       seat.seatType === "Economic"
                         ? "btn-secondary"

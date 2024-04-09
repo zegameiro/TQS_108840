@@ -1,12 +1,5 @@
 import { useState,useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-
-import {
-  FaChevronDown,
-  FaLocationDot,
-} from "react-icons/fa6";
-import { FaMoneyBillWave, FaCalendar, FaClock, FaBus } from "react-icons/fa";
-import { MdAirlineSeatReclineNormal } from "react-icons/md";
+import { Link } from 'react-router-dom'
 
 import Navbar from '../components/Navbar'
 import axios from 'axios'
@@ -16,11 +9,10 @@ import { API_URL } from '../api'
 const MyReservations = () => {
 
   const [reservations, setReservations] = useState([])
-  const navigate = useNavigate()
+
   const fetchReservations = async () => {
     try {
       const res = await axios.get(API_URL + 'reservations/list');
-
       if (res.status === 200) {
         // Set the reservations state to the fetched reservations
         console.log(res.data)
@@ -34,6 +26,7 @@ const MyReservations = () => {
   useEffect(() => {
     fetchReservations()
   }, [])
+
 
   return (
     <div>
@@ -49,8 +42,9 @@ const MyReservations = () => {
                   <th></th>
                   <th className="items-center gap-1">First Name</th>
                   <th className="items-center gap-1">Last Name</th>
-                  <th className="items-center gap-1">Phone Number <FaCalendar /></th>
-                  <th className="items-center gap-1">Seat <FaMoneyBillWave /></th>
+                  <th className="items-center gap-1">Email</th>
+                  <th className="items-center gap-1">Phone Number</th>
+                  <th className="items-center gap-1">Seat</th>
                   <th className="items-center gap-1">Bus Trip</th>
                 </tr>
               </thead>
@@ -60,12 +54,15 @@ const MyReservations = () => {
                       <th>{index + 1}</th>
                       <td>{reservation.firstName}</td>
                       <td>{reservation.lastName}</td>
+                      <td>{reservation.email}</td>
                       <td>{reservation.phone}</td>
                       <td>{reservation.seat}</td>
                       <td>
-                        <button className="btn btn-sm btn-outline btn-primary" onClick={() => navigate(`/reservation?id=${reservation.idBusTrip}`)}>
-                          See Trip
-                        </button>
+                        <Link to={`/reservation?id=${reservation.idBusTrip}`}>
+                          <button className="btn btn-sm btn-outline btn-primary">
+                            See Trip
+                          </button>
+                        </Link>
                       </td>
                     </tr>
                   ))}

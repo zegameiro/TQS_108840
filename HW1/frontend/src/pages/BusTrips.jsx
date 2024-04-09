@@ -110,13 +110,13 @@ const BusTrips = () => {
                 busTrips.map((busTrip, index) => (
                   <tr key={index}>
                     <th>{index + 1}</th>
-                    <td>{busTrip.fromCity}</td>
-                    <td>{busTrip.toCity}</td>
-                    <td>{busTrip.date}</td>
-                    <td>{busTrip.time}</td>
-                    <td>{busInfo[busTrip.busId]}</td>
-                    <td>{busTrip.price}</td>
-                    <td>
+                    <td id="from_city">{busTrip.fromCity}</td>
+                    <td id="to_city">{busTrip.toCity}</td>
+                    <td id="date">{busTrip.date}</td>
+                    <td id="time">{busTrip.time}</td>
+                    <td id="bus_name">{busInfo[busTrip.busId]}</td>
+                    <td id="price">{busTrip.price}</td>
+                    <td id="seats_available">
                       {busTrip.seats.filter((seat) => !seat.isTaken).length}
                     </td>
                     <td>

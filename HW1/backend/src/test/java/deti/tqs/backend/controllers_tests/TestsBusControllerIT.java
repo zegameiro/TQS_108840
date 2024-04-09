@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import deti.tqs.backend.models.Bus;
-import deti.tqs.backend.repositories.BusRepository;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = "spring.profiles.active=test")
 @AutoConfigureTestDatabase
@@ -27,6 +26,7 @@ public class TestsBusControllerIT {
   @Autowired
   private TestRestTemplate restTemplate;
 
+  @SuppressWarnings("null")
   @Test
   @DisplayName("Test create a new bus")
   public void testCreateBus() {

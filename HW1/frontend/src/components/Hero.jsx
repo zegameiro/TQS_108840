@@ -13,7 +13,6 @@ import { API_URL } from "../api";
 import { bus1 } from "../images";
 
 const Hero = () => {
-
   const navigate = useNavigate();
   const [fromCities, setFromCities] = useState([]);
   const [toCities, setToCities] = useState([]);
@@ -50,6 +49,9 @@ const Hero = () => {
     fetchToCities();
   }, []);
 
+  console.log(fromCity);
+  console.log(toCity);
+
   return (
     <div
       className="hero min-h-screen"
@@ -72,78 +74,72 @@ const Hero = () => {
               <h2 className="card-title mb-3">
                 Search for your ideal trip here
               </h2>
-              <div className="flex flex-col ">
+              <div className="flex flex-col">
                 <div className="flex flex-row justify-between">
-                  <div className="dropdown">
-                    <div
-                      tabIndex={0}
-                      role="button"
-                      className="btn btn-primary btn-outline m-1 w-[17rem] justify-between"
-                    >
-                      <span className="flex flex-row gap-2">
-                        {fromCity ? fromCity : "Choose your departure city"}{" "}
-                        <FaLocationDot />
-                      </span>
-                      <span>
-                        {" "}
-                        <FaChevronDown />
-                      </span>
+                <label className="form-control w-full">
+                    <div className="label">
+                      <span className="label-text">Departure City</span>
                     </div>
-                    <ul
-                      tabIndex={0}
-                      className="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box w-full"
+                    <select
+                      className="select select-primary w-full max-w-xs"
+                      value={toCity ? toCity : ""}
+                      onChange={(e) => setToCity(e.target.value)}
                     >
+                      <option disabled>Choose your departure city</option>
                       {fromCities.length > 0 &&
                         fromCities.map((city, index) => (
-                          <li key={index}>
-                            <a onClick={() => setFromCity(city)}>{city}</a>
-                          </li>
-                        ))}
-                    </ul>
-                  </div>
+                          <option
+                            key={index}
+                            value={city}
+                            onChange={(e) => setToCity(e.target.value)}
+                          >
+                            {city}
+                          </option>
+                        ))
+                      }
+                    </select>
+                  </label>
 
                   <div className="divider divider-horizontal h-[11rem]"></div>
-
-                  <div className="dropdown">
-                    <div
-                      tabIndex={0}
-                      role="button"
-                      className="btn btn-primary btn-outline m-1 w-[17rem] justify-between"
-                    >
-                      <span className="flex flex-row gap-2">
-                        {toCity ? toCity : "Choose your departure city"}{" "}
-                        <FaLocationDot />
-                      </span>
-                      <span>
-                        {" "}
-                        <FaChevronDown />
-                      </span>
+                  <label className="form-control w-full">
+                    <div className="label">
+                      <span className="label-text">Destination City</span>
                     </div>
-                    <ul
-                      tabIndex={0}
-                      className="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box w-full"
+                    <select
+                      className="select select-primary w-full max-w-xs"
+                      value={toCity ? toCity : ""}
+                      onChange={(e) => setToCity(e.target.value)}
                     >
+                      <option disabled>Choose your destination city</option>
                       {toCities.length > 0 &&
                         toCities.map((city, index) => (
-                          <li key={index}>
-                            <a onClick={() => setToCity(city)}>{city}</a>
-                          </li>
+                          <option
+                            key={index}
+                            value={city}
+                            onChange={(e) => setToCity(e.target.value)}
+                          >
+                            {city}
+                          </option>
                         ))}
-                    </ul>
-                  </div>
+                    </select>
+                  </label>
                 </div>
                 <input
                   type="date"
-                  placeholder="Choose a date" 
+                  placeholder="Choose a date"
                   className="input input-bordered input-primary w-full mt-5"
                   onChange={(e) => setDate(e.target.value)}
                 />
                 <div className="flex flex-row space-x-4 justify-center pt-5">
                   {(fromCity || toCity || date) && (
                     <button
-                      className="btn btn-outline"
+                      className="btn btn-outline btn-accent"
                       onClick={() =>
-                        navigate(`/bustrips?${fromCity && `&from=${fromCity}`}${toCity && `&to=${toCity}`}${date && `&date=${date}`}`)
+                        navigate(
+                          `/bustrips?${fromCity && `&from=${fromCity}`}${
+                            toCity && `&to=${toCity}`
+                          }${date && `&date=${date}`}`
+                        )
                       }
                     >
                       Search <FaSearch />

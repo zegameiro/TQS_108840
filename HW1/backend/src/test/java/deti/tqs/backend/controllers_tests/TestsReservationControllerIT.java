@@ -128,6 +128,7 @@ public class TestsReservationControllerIT {
 
   }
 
+  @SuppressWarnings("null")
   @Test
   @DisplayName("Test if all the reservations are retrieved correctly")
   public void testGetReservations() throws Exception {
@@ -140,6 +141,7 @@ public class TestsReservationControllerIT {
 
   }
 
+  @SuppressWarnings("null")
   @Test 
   @DisplayName("Test create a reservation with success")
   public void testCreateReservation() throws Exception {

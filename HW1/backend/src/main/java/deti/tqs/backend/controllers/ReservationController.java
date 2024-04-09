@@ -60,11 +60,6 @@ public class ReservationController {
 
     BusTrip busTrip = busTripService.getBusTripById(reservation.getIdBusTrip(), "EUR");
 
-    if (busTrip == null) {
-      logger.error("Could not find trip with id " + reservation.getIdBusTrip());
-      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Trip not found!");
-    }
-    
     int requestedSeat = reservation.getSeat() - busTrip.getSeats().get(0).getId();
     reservation.setSeat(requestedSeat);
 

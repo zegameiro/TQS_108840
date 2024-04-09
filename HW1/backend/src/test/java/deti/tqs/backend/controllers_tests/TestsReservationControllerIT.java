@@ -171,4 +171,49 @@ public class TestsReservationControllerIT {
     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
   }
 
+  @Test
+  @DisplayName("Test create a reservation with invalid email")
+  public void testCreateReservationInvalidEmail() throws Exception {
+    Reservation res1 = new Reservation();
+    res1.setFirstName("John");
+    res1.setLastName("Smith");
+    res1.setEmail("john");
+    res1.setIdBusTrip(busTrip1.getId());
+    res1.setSeat(2);
+    res1.setPhone("987654321");
+
+    ResponseEntity<Reservation> response = restTemplate.postForEntity("/api/reservations/buy", res1, Reservation.class);
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+  }
+
+  @Test
+  @DisplayName("Test create a reservation with invalid phone")
+  public void testCreateReservationInvalidPhone() throws Exception {
+    Reservation res1 = new Reservation();
+    res1.setFirstName("John");
+    res1.setLastName("Smith");
+    res1.setEmail("johnah@gmail.com");
+    res1.setIdBusTrip(busTrip1.getId());
+    res1.setSeat(2);
+    res1.setPhone("987654321012242");
+
+    ResponseEntity<Reservation> response = restTemplate.postForEntity("/api/reservations/buy", res1, Reservation.class);
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+  }
+
+  @Test 
+  @DisplayName("Test create a reservation with invalid trip id")
+  public void testCreateReservationInvalidTripId() throws Exception {
+    Reservation res1 = new Reservation();
+    res1.setFirstName("John");
+    res1.setLastName("Smith");
+    res1.setEmail("h@gmail.com");
+    res1.setIdBusTrip(10023);
+    res1.setSeat(2);
+    res1.setPhone("987654321");
+
+    ResponseEntity<Reservation> response = restTemplate.postForEntity("/api/reservations/buy", res1, Reservation.class);
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+  }
+
 }

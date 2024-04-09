@@ -23,7 +23,7 @@ import deti.tqs.backend.models.BusTrip;
 import deti.tqs.backend.services.BusTripService;
 
 @WebMvcTest(controllers = BusTripController.class)
-public class TestBusTripController {
+public class TestsBusTripController {
   
   @Autowired
   private MockMvc mvc;

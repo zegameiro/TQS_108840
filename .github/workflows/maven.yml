@@ -20,3 +20,4 @@ jobs:
         
     - name: Build and run unit tests with Maven
       run: cd HW1/backend && mvn clean test
+      continue-on-error: false

@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 
 @DataJpaTest
-public class TestBusTripService {
+public class TestBusTripRepository {
   
   @Autowired
   private BusTripRepository busTripRepository;
@@ -283,15 +283,3 @@ public class TestBusTripService {
   }
 
 }
-
-// @Query("SELECT bustrip FROM BusTrip bustrip WHERE (:fromCity IS NULL OR bustrip.fromCity = :fromCity) AND (:toCity IS NULL OR bustrip.toCity = :toCity) AND (:date IS NULL OR bustrip.date = :date)")
-//   public List<BusTrip> findByFromCityAndToCityAndDate(@Param("fromCity") String fromCity, @Param("toCity") String toCity, @Param("date") String date);
-
-//   @Query("SELECT DISTINCT bustrip.date FROM BusTrip bustrip")
-//   public List<String> findDates();
-
-//   @Query("SELECT DISTINCT bustrip.fromCity FROM BusTrip bustrip")
-//   public List<String> findFromCities();
-
-//   @Query("SELECT DISTINCT bustrip.toCity FROM BusTrip bustrip")
-//   public List<String> findToCities();

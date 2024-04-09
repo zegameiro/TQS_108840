@@ -34,9 +34,6 @@ public class CurrencyExchangeService {
   }
 
   public boolean cacheExchangeRates(Map<String, Object> rates) {
-    if (rates == null)
-      return false;
-
     cachedRates = rates;
     lastCaching = System.currentTimeMillis();
     logger.info("Rates cached successfully at " + lastCaching + " with ttl " + cachedTtl);
@@ -77,7 +74,7 @@ public class CurrencyExchangeService {
 
     String api_link = "https://v6.exchangerate-api.com/v6/" + apiKey + "/latest/" + from;
 
-    String content = request(api_link);
+    String content = requestExchanges(api_link);
 
     JSONObject obj = new JSONObject(content.toString());
 
@@ -97,7 +94,7 @@ public class CurrencyExchangeService {
   }
   
 
-  public String request(String link) throws Exception {
+  public String requestExchanges(String link) throws Exception {
 
     URL url = new URL(link);
 

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,7 +45,7 @@ public class BusController {
   }
 
   @PostMapping("/add")
-  public ResponseEntity<Bus> addBus(@RequestParam Bus bus) {
+  public ResponseEntity<Bus> addBus(@RequestBody Bus bus) {
     Bus b = busService.addBus(bus);
     logger.info("Adding bus with name " + b.getName() );
     return ResponseEntity.ok(b);

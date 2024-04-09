@@ -1,5 +1,7 @@
 package deti.tqs.backend.services_tests;
 
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -16,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import deti.tqs.backend.models.BusTrip;
 import deti.tqs.backend.repositories.BusTripRepository;
 import deti.tqs.backend.services.BusTripService;
+import deti.tqs.backend.services.CurrencyExchangeService;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,6 +27,9 @@ public class TestBustripService {
   
   @Mock
   private BusTripRepository busTripRepository;
+
+  @Mock
+  private CurrencyExchangeService currencyExchangeService;
 
   @InjectMocks
   private BusTripService busTripService;
@@ -73,5 +79,78 @@ public class TestBustripService {
     assertThat(busTripService.getToCities()).isEqualTo(List.of("Lisboa", "Pombal", "Leiria", "Aveiro", "Porto", "Coimbra")).hasSize(6);
 
     verify(busTripRepository, times(1)).findToCities();
+  }
+
+  @Test
+  @DisplayName("Check filtered trips when currency is null")
+  public void checkListFilteredTrips_WhenCurrencyIsNull() {
+    BusTrip busTrip1 = new BusTrip();
+    busTrip1.setFromCity("Lisboa");
+    busTrip1.setToCity("Porto");
+    busTrip1.setDate("2021-06-03");
+    busTrip1.setPrice(12.39);
+
+    when(busTripRepository.findByFromCityAndToCityAndDate("Lisboa", "Porto", "2021-06-03")).thenReturn(List.of(busTrip1));
+    
+    assertThat(busTripService.listFilteredTrips("Lisboa", "Porto", "2021-06-03", null).get(0).getPrice()).isEqualTo(12.39);
+
+    verify(busTripRepository, times(1)).findByFromCityAndToCityAndDate(anyString(), anyString(), anyString());
+  }
+
+  @Test
+  @DisplayName("Check filtered trips when given all the parameters")
+  public void checkListFilteredTrips_WhenGivenAllParameters() {
+    BusTrip busTrip1 = new BusTrip();
+    busTrip1.setFromCity("Leiria");
+    busTrip1.setToCity("Batalha");
+    busTrip1.setDate("2005-10-30");
+    busTrip1.setPrice(12.39);
+
+    when(busTripRepository.findByFromCityAndToCityAndDate("Lisboa", "Porto", "2021-06-03")).thenReturn(List.of());
+    when(busTripRepository.findByFromCityAndToCityAndDate("Leiria", "Batalha", "2005-10-30")).thenReturn(List.of(busTrip1));
+    
+    assertThat(busTripService.listFilteredTrips("Lisboa", "Porto", "2021-06-03", "USD")).isEmpty();
+    assertThat(busTripService.listFilteredTrips("Leiria", "Batalha", "2005-10-30", "EUR")).contains(busTrip1);
+
+    verify(busTripRepository, times(2)).findByFromCityAndToCityAndDate(anyString(), anyString(), anyString());
+  }
+
+  @Test
+  @DisplayName("Check get bus trip by id with currency")
+  public void checkGetBusById_WitCurrency() throws Exception {
+    BusTrip busTrip1 = new BusTrip();
+    busTrip1.setFromCity("Coimbra");
+    busTrip1.setToCity("Santarém");
+    busTrip1.setDate("2003-07.03");
+    busTrip1.setPrice(30.4);
+
+    when(busTripRepository.findById(1)).thenReturn(busTrip1);
+    when(currencyExchangeService.exchange("EUR", "USD")).thenReturn(3.6);
+    
+    assertThat(busTripService.getBusTripById(1, "USD").getPrice()).isEqualTo(109.44);
+
+    verify(busTripRepository, times(1)).findById(anyInt());
+    verify(currencyExchangeService, times(1)).exchange(anyString(), anyString());
+  }
+
+  @Test
+  @DisplayName("Check method trip exists")
+  public void checkTripExists() {
+
+    when(busTripRepository.existsById(1)).thenReturn(true);
+    
+    assertThat(busTripService.tripExists(1)).isTrue();
+
+    verify(busTripRepository, times(1)).existsById(anyInt());
+  }
+
+  @Test
+  @DisplayName("Check filter trips when there are no trips")
+  public void checkListFilteredTrips_WhenNoTrips() {
+    when(busTripRepository.findByFromCityAndToCityAndDate("Lisboa", "Porto", "2021-06-03")).thenReturn(List.of());
+    
+    assertThat(busTripService.listFilteredTrips("Lisboa", "Porto", "2021-06-03", "USD")).isEmpty();
+
+    verify(busTripRepository, times(1)).findByFromCityAndToCityAndDate(anyString(), anyString(), anyString());
   }
 }

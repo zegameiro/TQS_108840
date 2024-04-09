@@ -1,6 +1,5 @@
 package deti.tqs.backend.unit_tests;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,7 +11,6 @@ public class TestCache {
   private static CurrencyExchangeService currencyService = new CurrencyExchangeService(6000);
 
   @Test
-  @Disabled
   @DisplayName("Check when time to live expires the cache is invalid, otherwise the cache must be valid")
   public void testCacheAfterTimetoLiveExpires() throws Exception {
     currencyService.exchange("EUR", "USD");
@@ -23,7 +21,6 @@ public class TestCache {
   }
 
   @Test
-  @Disabled
   @DisplayName("Check if the list of currencies has the right values EUR and USD")
   public void testListCurrencies() throws Exception {
     assertThat(currencyService.listCurrencies()).contains("EUR", "USD");

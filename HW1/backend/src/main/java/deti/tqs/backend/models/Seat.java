@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "seat")
 public class Seat {
-  
+    
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
@@ -17,11 +17,6 @@ public class Seat {
   private boolean isTaken;
 
   public Seat() {}
-
-  public Seat(String seatType, boolean isTaken) {
-    this.seatType = seatType;
-    this.isTaken = isTaken;
-  }
 
   public int getId() {
     return id;

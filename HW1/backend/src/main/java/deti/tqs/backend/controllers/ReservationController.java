@@ -70,8 +70,8 @@ public class ReservationController {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Trip not found!");
     }
 
-    int requestedSeat = reservation.getSeat() - busTrip.getSeats().get(0).getId();
-
+    int requestedSeat = reservation.getSeat();
+    
     if (requestedSeat < 1 || requestedSeat > busTrip.getSeats().size()) {
       logger.error("Invalid seat number");
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid seat number!");

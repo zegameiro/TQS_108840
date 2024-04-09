@@ -15,6 +15,8 @@
 	<description>Homework Assignment for the class TQS</description>
 
 	<properties>
+		<sonar.organization>zegameiro</sonar.organization>
+  	<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<java.version>17</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -111,7 +113,6 @@
 			<artifactId>json</artifactId>
 			<version>20240303</version>
 		</dependency>
-		
 		
 	</dependencies>
 

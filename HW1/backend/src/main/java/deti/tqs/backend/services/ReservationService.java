@@ -24,12 +24,12 @@ public class ReservationService {
   private BusTripRepository busTripRepository;
 
   public boolean checkSeatAvailable(int tripId, int seatNumber) {
-    logger.info("Checking if seat " + seatNumber + " is available for trip " + tripId);
+    logger.info("Checking if seat {0} is available for trip {1}", seatNumber, tripId);
     return reservationRepository.findBySeatAndIdBusTrip(seatNumber, tripId) == null;
   }
 
   public List<Reservation> findTicketsById(int tripId) {
-    logger.info("Searching tickets for trip " + tripId);
+    logger.info("Searching tickets for trip {}", tripId);
     return reservationRepository.findByIdBusTrip(tripId);
   }
 
@@ -53,7 +53,7 @@ public class ReservationService {
       return reservation;
 
     } catch (Exception e) {
-      logger.error("Error buying reservation: " + e.getMessage());
+      logger.error("Error buying reservation: {}", e.getMessage());
       return null;
     }
   }

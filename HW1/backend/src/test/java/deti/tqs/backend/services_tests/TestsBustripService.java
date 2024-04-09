@@ -36,7 +36,7 @@ public class TestsBustripService {
 
   @Test
   @DisplayName("Check get all existing bus trips")
-  public void checkGetAllBusTrips() {
+  void checkGetAllBusTrips() {
     BusTrip busTrip1 = new BusTrip();
     BusTrip busTrip2 = new BusTrip();
     BusTrip busTrip3 = new BusTrip();
@@ -50,7 +50,7 @@ public class TestsBustripService {
 
   @Test
   @DisplayName("Check get all dates of all bus trips")
-  public void checkGetAllDates() {
+  void checkGetAllDates() {
 
     when(busTripRepository.findDates()).thenReturn(List.of("2011-12-23", "2000-11-12", "2021-06-03"));
     
@@ -61,7 +61,7 @@ public class TestsBustripService {
 
   @Test
   @DisplayName("Check get all from cities of all bus trips")
-  public void checkGetAllFromCities() {
+  void checkGetAllFromCities() {
 
     when(busTripRepository.findFromCities()).thenReturn(List.of("Lisboa", "Pombal", "Leiria", "Aveiro"));
     
@@ -72,7 +72,7 @@ public class TestsBustripService {
 
   @Test
   @DisplayName("Check get all to cities of all bus trips")
-  public void checkGetAllToCities() {
+  void checkGetAllToCities() {
 
     when(busTripRepository.findToCities()).thenReturn(List.of("Lisboa", "Pombal", "Leiria", "Aveiro", "Porto", "Coimbra"));
     
@@ -83,7 +83,7 @@ public class TestsBustripService {
 
   @Test
   @DisplayName("Check filtered trips when currency is null")
-  public void checkListFilteredTrips_WhenCurrencyIsNull() {
+  void checkListFilteredTrips_WhenCurrencyIsNull() {
     BusTrip busTrip1 = new BusTrip();
     busTrip1.setFromCity("Lisboa");
     busTrip1.setToCity("Porto");
@@ -99,7 +99,7 @@ public class TestsBustripService {
 
   @Test
   @DisplayName("Check filtered trips when given all the parameters")
-  public void checkListFilteredTrips_WhenGivenAllParameters() {
+  void checkListFilteredTrips_WhenGivenAllParameters() {
     BusTrip busTrip1 = new BusTrip();
     busTrip1.setFromCity("Leiria");
     busTrip1.setToCity("Batalha");
@@ -117,7 +117,7 @@ public class TestsBustripService {
 
   @Test
   @DisplayName("Check get bus trip by id with currency")
-  public void checkGetBusById_WitCurrency() throws Exception {
+  void checkGetBusById_WitCurrency() throws Exception {
     BusTrip busTrip1 = new BusTrip();
     busTrip1.setFromCity("Coimbra");
     busTrip1.setToCity("Santarém");
@@ -135,7 +135,7 @@ public class TestsBustripService {
 
   @Test
   @DisplayName("Check method trip exists")
-  public void checkTripExists() {
+  void checkTripExists() {
 
     when(busTripRepository.existsById(1)).thenReturn(true);
     
@@ -145,8 +145,24 @@ public class TestsBustripService {
   }
 
   @Test
+  @DisplayName("Check get bus trip by id without currency")
+  void checkGetBusById_WithoutCurrency() {
+    BusTrip busTrip1 = new BusTrip();
+    busTrip1.setFromCity("Coimbra");
+    busTrip1.setToCity("Santarém");
+    busTrip1.setDate("2003-07.03");
+    busTrip1.setPrice(30.4);
+
+    when(busTripRepository.findById(1)).thenReturn(busTrip1);
+    
+    assertThat(busTripService.getBusTripById(1, null).getPrice()).isEqualTo(30.4);
+
+    verify(busTripRepository, times(1)).findById(anyInt());
+  }
+
+  @Test
   @DisplayName("Check filter trips when there are no trips")
-  public void checkListFilteredTrips_WhenNoTrips() {
+  void checkListFilteredTrips_WhenNoTrips() {
     when(busTripRepository.findByFromCityAndToCityAndDate("Lisboa", "Porto", "2021-06-03")).thenReturn(List.of());
     
     assertThat(busTripService.listFilteredTrips("Lisboa", "Porto", "2021-06-03", "USD")).isEmpty();

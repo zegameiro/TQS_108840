@@ -26,35 +26,35 @@ public class BusTripController {
   private BusTripService busTripService;
 
   @GetMapping("/get")
-  public ResponseEntity<List<BusTrip>> listBusTrips(@RequestParam(required = false) String fromCity, @RequestParam(required = false) String toCity, @RequestParam(required = false) String date, @RequestParam(required = false) String currency) {
+  ResponseEntity<List<BusTrip>> listBusTrips(@RequestParam(required = false) String fromCity, @RequestParam(required = false) String toCity, @RequestParam(required = false) String date, @RequestParam(required = false) String currency) {
     logger.info("List of bus trips requested");
-    logger.info("From city: " + fromCity);
-    logger.info("To city: " + toCity);
-    logger.info("Date: " + date);
+    logger.info("From city: {}", fromCity);
+    logger.info("To city: {}", toCity);
+    logger.info("Date: {}", date);
     return ResponseEntity.ok(busTripService.listFilteredTrips(fromCity, toCity, date, currency));
   }
 
   @GetMapping("/get_bus_trip")
-  public ResponseEntity<BusTrip> getBusTrip(@RequestParam int id, @RequestParam(required = false) String currency) {
+  ResponseEntity<BusTrip> getBusTrip(@RequestParam int id, @RequestParam(required = false) String currency) {
     BusTrip busTrip = busTripService.getBusTripById(id, currency);
-    logger.info("Bus trip with id " + id + " requested");
+    logger.info("Bus trip with id {} requested", id);
     return ResponseEntity.ok(busTrip);
   }
 
   @GetMapping("/get_dates")
-  public ResponseEntity<List<String>> getDates() {
+  ResponseEntity<List<String>> getDates() {
     logger.info("List of dates requested");
     return ResponseEntity.ok(busTripService.getDates());
   }
 
   @GetMapping("/get_from_cities")
-  public ResponseEntity<List<String>> getFromCities() {
+  ResponseEntity<List<String>> getFromCities() {
     logger.info("List of from cities requested");
     return ResponseEntity.ok(busTripService.getFromCities());
   }
 
   @GetMapping("/get_to_cities")
-  public ResponseEntity<List<String>> getToCities() {
+  ResponseEntity<List<String>> getToCities() {
     logger.info("List of to cities requested");
     return ResponseEntity.ok(busTripService.getToCities());
   }

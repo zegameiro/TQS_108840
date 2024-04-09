@@ -28,7 +28,9 @@ public class BusTrip {
   private String date;
   private String time;
 
-  public BusTrip() {}
+  public BusTrip() {
+    // Empty constructor needed for JPA
+  }
 
   public int getId() {
     return id;

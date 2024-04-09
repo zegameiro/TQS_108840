@@ -20,7 +20,7 @@ public class TestBusTripRepository {
 
   @Test
   @DisplayName("When a new bus trip is saved, then it should be found it by its ID")
-  public void whenNewBusTripSaved_thenFindById() {
+  void whenNewBusTripSaved_thenFindById() {
     BusTrip busTrip = new BusTrip();
     busTrip.setFromCity("Lagos");
     busTrip.setToCity("Santarém");
@@ -39,7 +39,7 @@ public class TestBusTripRepository {
 
   @Test
   @DisplayName("When several buses trips are saved, then it should return a list containing all the added buses trips")
-  public void whenMultipleBusTripsSaved_thenFindAll() {
+  void whenMultipleBusTripsSaved_thenFindAll() {
     BusTrip busTrip1 = new BusTrip();
     busTrip1.setFromCity("Coimbra");
     busTrip1.setToCity("Figueira da Foz");
@@ -83,7 +83,7 @@ public class TestBusTripRepository {
 
   @Test
   @DisplayName("When a bus trip is added, then it should not be found by its from city")
-  public void whenBusTripAdded_thenFindByFromCity() {
+  void whenBusTripAdded_thenFindByFromCity() {
     BusTrip busTrip = new BusTrip();
     busTrip.setFromCity("Lisboa");
     busTrip.setToCity("Porto");
@@ -102,7 +102,7 @@ public class TestBusTripRepository {
 
   @Test
   @DisplayName("When a bus trip is added, then it should not be found by its to city")
-  public void whenBusTripAdded_thenFindBytoCity() {
+  void whenBusTripAdded_thenFindBytoCity() {
     BusTrip busTrip1 = new BusTrip();
     busTrip1.setFromCity("Leiria");
     busTrip1.setToCity("Porto");
@@ -130,7 +130,7 @@ public class TestBusTripRepository {
 
   @Test
   @DisplayName("When a bus trip is added, then it should not be found by its date")
-  public void whenBusTripAdded_thenFindByDate() {
+  void whenBusTripAdded_thenFindByDate() {
     BusTrip busTrip1 = new BusTrip();
     busTrip1.setFromCity("São João da Madeira");
     busTrip1.setToCity("Espinho");
@@ -168,7 +168,7 @@ public class TestBusTripRepository {
 
   @Test
   @DisplayName("When a bus trip is deleted by its from city, then it should not be found by its from city")
-  public void whenBusTripDeleted_thenFindByFromCity() {
+  void whenBusTripDeleted_thenFindByFromCity() {
     BusTrip busTrip = new BusTrip();
     busTrip.setFromCity("Lisboa");
     busTrip.setToCity("Porto");
@@ -189,7 +189,7 @@ public class TestBusTripRepository {
 
   @Test
   @DisplayName("When a bus trip is deleted by its to city, then it should not be found by its to city")
-  public void whenBusTripDeleted_thenFindByToCity() {
+  void whenBusTripDeleted_thenFindByToCity() {
     BusTrip busTrip1 = new BusTrip();
     busTrip1.setFromCity("Leiria");
     busTrip1.setToCity("Porto");
@@ -219,7 +219,7 @@ public class TestBusTripRepository {
 
   @Test
   @DisplayName("When its searched for a bustrip by its from city, then it should return a list containing all the bustrips with that from city")
-  public void whenFindByFromCity_thenReturnBusTrips() {
+  void whenFindByFromCity_thenReturnBusTrips() {
     BusTrip busTrip1 = new BusTrip();
     busTrip1.setFromCity("Pombal");
     busTrip1.setToCity("Lisboa");
@@ -247,7 +247,7 @@ public class TestBusTripRepository {
 
   @Test
   @DisplayName("When its searched for a bustrip by its to city, then it should return a list containing all the bustrips with that to city")
-  public void whenFindByToCity_thenReturnBusTrips() {
+  void whenFindByToCity_thenReturnBusTrips() {
     BusTrip busTrip1 = new BusTrip();
     busTrip1.setFromCity("Algarve");
     busTrip1.setToCity("Lisboa");

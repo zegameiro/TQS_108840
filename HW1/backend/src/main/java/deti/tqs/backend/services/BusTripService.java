@@ -35,15 +35,15 @@ public class BusTripService {
     double exchangeRate = 1.0;
 
     try {
-      logger.info("Exchanging currency from EUR to " + currency);
+      logger.info("Exchanging currency from EUR to {}", currency);
       exchangeRate = currencyExchangeService.exchange("EUR", currency);
     } catch (Exception e) {
-      logger.error("Error exchanging currency: " + e.getMessage());
+      logger.error("Error exchanging currency: {}", e.getMessage());
     }
 
     busTrip.setPrice(busTrip.getPrice() * exchangeRate);
 
-    logger.info("Trip with id " + id + " requested in currency " + currency);
+    logger.info("Trip with id %d requested in currency %d", id, currency);
 
     return busTrip;
   }
@@ -58,17 +58,17 @@ public class BusTripService {
     double exchangeRate = 1.0;
 
     try {
-      logger.info("Exchanging currency from EUR to " + currency);
+      logger.info("Exchanging currency from EUR to {}", currency);
       exchangeRate = currencyExchangeService.exchange("EUR", currency);
     } catch (Exception e) {
-      logger.error("Error exchanging currency: " + e.getMessage());
+      logger.error("Error exchanging currency: {}", e.getMessage());
     }
 
     for (BusTrip trip : trips) {
       trip.setPrice(trip.getPrice() * exchangeRate);
     }
 
-    logger.info("Trips requested in currency " + currency);
+    logger.info("Trips requested in currency {}", currency);
 
     return trips;
   }

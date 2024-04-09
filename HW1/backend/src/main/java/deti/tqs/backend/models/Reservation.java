@@ -21,7 +21,9 @@ public class Reservation {
   private String phone;
   private int seat;
 
-  public Reservation() {}
+  public Reservation() {
+    // Empty constructor needed for JPA
+  }
 
   public int getId() {
     return id;

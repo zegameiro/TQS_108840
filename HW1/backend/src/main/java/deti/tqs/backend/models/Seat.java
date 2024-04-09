@@ -16,7 +16,9 @@ public class Seat {
   private String seatType = "Economic";
   private boolean isTaken;
 
-  public Seat() {}
+  public Seat() {
+    // Empty constructor needed for JPA
+  }
 
   public int getId() {
     return id;

@@ -23,7 +23,7 @@ import deti.tqs.backend.models.BusTrip;
 import deti.tqs.backend.services.BusTripService;
 
 @WebMvcTest(controllers = BusTripController.class)
-public class TestsBusTripController {
+class TestsBusTripController {
   
   @Autowired
   private MockMvc mvc;
@@ -32,7 +32,7 @@ public class TestsBusTripController {
   private BusTripService busTripService;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     BusTrip busTrip1 = new BusTrip();
     busTrip1.setId(1);
     busTrip1.setFromCity("Porto");
@@ -52,7 +52,7 @@ public class TestsBusTripController {
 
   @Test
   @DisplayName("Test if all the dates are retrieved correctly")
-  public void testGetBusTripDates() throws Exception {
+  void testGetBusTripDates() throws Exception {
     mvc.perform(get("/api/bustrips/get_dates").content("application/json"))
       .andExpect(status().isOk())
       .andExpect(content().contentType("application/json"))
@@ -65,7 +65,7 @@ public class TestsBusTripController {
 
   @Test
   @DisplayName("Test if all the from cities are retrieved correctly")
-  public void testGetBusTripFromCities() throws Exception {
+  void testGetBusTripFromCities() throws Exception {
     mvc.perform(get("/api/bustrips/get_from_cities").content("application/json"))
       .andExpect(status().isOk())
       .andExpect(content().contentType("application/json"))
@@ -78,7 +78,7 @@ public class TestsBusTripController {
 
   @Test
   @DisplayName("Test if all the to cities are retrieved correctly")
-  public void testGetBusTripToCities() throws Exception {
+  void testGetBusTripToCities() throws Exception {
     mvc.perform(get("/api/bustrips/get_to_cities").content("application/json"))
       .andExpect(status().isOk())
       .andExpect(content().contentType("application/json"))
@@ -91,7 +91,7 @@ public class TestsBusTripController {
 
   @Test
   @DisplayName("Test if given a bus trip id and a currency it then returns")
-  public void testGetBusTripById() throws Exception {
+  void testGetBusTripById() throws Exception {
     mvc.perform(get("/api/bustrips/get_bus_trip?id=1&currency=EUR").content("application/json"))
       .andExpect(status().isOk())
       .andExpect(content().contentType("application/json"))
@@ -104,7 +104,7 @@ public class TestsBusTripController {
 
   @Test
   @DisplayName("Test if given a bus trip id that does not exist it returns null")
-  public void testGetBusTripByIdNotFound() throws Exception {
+  void testGetBusTripByIdNotFound() throws Exception {
     mvc.perform(get("/api/bustrips/get_bus_trip?id=0&currency=EUR"))
       .andExpect(status().isOk())
       .andExpect(jsonPath("$").doesNotExist());
@@ -112,7 +112,7 @@ public class TestsBusTripController {
 
   @Test
   @DisplayName("Test endpoint filter trips with multiple parameters")
-  public void testFilterTrips() throws Exception {
+  void testFilterTrips() throws Exception {
     mvc.perform(get("/api/bustrips/get?fromCity=Porto&toCity=Leiria&date=2021-05-01&currency=EUR").content("application/json"))
       .andExpect(status().isOk())
       .andExpect(content().contentType("application/json"))

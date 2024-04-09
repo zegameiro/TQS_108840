@@ -11,14 +11,14 @@ public class TestInputValidators {
 
   @Test
   @DisplayName("Check if the email has a valid format it should return true")
-  public void whenValidEmail_ReturnTrue() {
+  void whenValidEmail_ReturnTrue() {
     ReservationFormValidator validator = new ReservationFormValidator();
     assertThat(validator.validateEmail("adriana@gmail.com")).isTrue();
   }
 
   @Test
   @DisplayName("Check if the email has a invalid format it should return false")
-  public void whenInvalidEmail_ReturnFalse() {
+  void whenInvalidEmail_ReturnFalse() {
     ReservationFormValidator validator = new ReservationFormValidator();
     assertThat(validator.validateEmail("adriana@gmail")).isFalse();
     assertThat(validator.validateEmail("adriana.pt")).isFalse();
@@ -26,17 +26,16 @@ public class TestInputValidators {
 
   @Test
   @DisplayName("Check if the phone has a valid size")
-  public void whenValidPhone_ReturnTrue() {
+  void whenValidPhone_ReturnTrue() {
     ReservationFormValidator validator = new ReservationFormValidator();
     assertThat(validator.validatePhone("912345678")).isTrue();
   }
 
   @Test
   @DisplayName("Check if the phone has a invalid size")
-  public void whenInvalidPhone_ReturnFalse() {
+  void whenInvalidPhone_ReturnFalse() {
     ReservationFormValidator validator = new ReservationFormValidator();
     assertThat(validator.validatePhone("91234567")).isFalse();
     assertThat(validator.validatePhone("9123456789")).isFalse();
-  }
-  
+  } 
 }

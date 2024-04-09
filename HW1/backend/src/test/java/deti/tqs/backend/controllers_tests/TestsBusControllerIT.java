@@ -29,7 +29,7 @@ public class TestsBusControllerIT {
   @SuppressWarnings("null")
   @Test
   @DisplayName("Test create a new bus")
-  public void testCreateBus() {
+  void testCreateBus() {
     Bus bus = new Bus();
     bus.setName("Flix Bus 1");
     bus.setCapacity(74);

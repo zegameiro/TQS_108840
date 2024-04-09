@@ -17,7 +17,7 @@ public class TestBusRepository {
 
   @Test
   @DisplayName("When a new bus is saved, then it should be find it by its ID")
-  public void whenNewBusSaved_thenFindById() {
+  void whenNewBusSaved_thenFindById() {
     Bus bus = new Bus();
     bus.setName("Flix Bus 1");
     bus.setCapacity(50);
@@ -31,7 +31,7 @@ public class TestBusRepository {
 
   @Test
   @DisplayName("When a new bus is saved, then it should be foundt by its name")
-  public void whenNewBusSaved_thenFindByName() {
+  void whenNewBusSaved_thenFindByName() {
     Bus bus = new Bus();
     bus.setName("Flix Bus 2");
     bus.setCapacity(92);
@@ -46,7 +46,7 @@ public class TestBusRepository {
 
   @Test
   @DisplayName("When multiple buses are saved, then it should return a list containing all the added buses")
-  public void whenMultipleBusesSaved_thenFindAll() {
+  void whenMultipleBusesSaved_thenFindAll() {
     Bus bus1 = new Bus();
     bus1.setName("Flix Bus 3");
     bus1.setCapacity(78);
@@ -69,7 +69,7 @@ public class TestBusRepository {
 
   @Test
   @DisplayName("When a bus is deleted by its ID, then it should not be found by its ID")
-  public void whenBusDeleted_thenFindById() {
+  void whenBusDeleted_thenFindById() {
     Bus bus = new Bus();
     bus.setName("Flix Bus 3");
     bus.setCapacity(12);
@@ -84,7 +84,7 @@ public class TestBusRepository {
 
   @Test
   @DisplayName("When all buses are deleted, then the list of buses should be empty")
-  public void whenAllBusesDeleted_thenFindAll() {
+  void whenAllBusesDeleted_thenFindAll() {
     Bus bus1 = new Bus();
     bus1.setName("Flix Bus 4");
     bus1.setCapacity(78);

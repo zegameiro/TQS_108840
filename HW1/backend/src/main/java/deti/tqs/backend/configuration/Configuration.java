@@ -83,7 +83,7 @@ public class Configuration implements ApplicationRunner {
     busTrip1.setDate("2005-04-09");
     busTrip1.setTime("09h00");
 
-    ArrayList<Seat> seats1 = new ArrayList<Seat>(bus1.getCapacity());
+    ArrayList<Seat> seats1 = new ArrayList<>(bus1.getCapacity());
 
     for (int i = 0; i < bus1.getCapacity(); i++) {
       seats1.add(new Seat());
@@ -102,7 +102,7 @@ public class Configuration implements ApplicationRunner {
     busTrip2.setDate("2014-06-21");
     busTrip2.setTime("21h30");
 
-    ArrayList<Seat> seats2 = new ArrayList<Seat>(bus2.getCapacity());
+    ArrayList<Seat> seats2 = new ArrayList<>(bus2.getCapacity());
 
     for (int i = 0; i < bus2.getCapacity(); i++) {
       seats2.add(new Seat());
@@ -121,7 +121,7 @@ public class Configuration implements ApplicationRunner {
     busTrip3.setDate("2021-04-16");
     busTrip3.setTime("08h00");
 
-    ArrayList<Seat> seats3 = new ArrayList<Seat>(bus3.getCapacity());
+    ArrayList<Seat> seats3 = new ArrayList<>(bus3.getCapacity());
 
     for (int i = 0; i < bus3.getCapacity(); i++) {
       seats3.add(new Seat());
@@ -141,7 +141,7 @@ public class Configuration implements ApplicationRunner {
     busTrip4.setDate("2020-12-12");
     busTrip4.setTime("12h30");
 
-    ArrayList<Seat> seats4 = new ArrayList<Seat>(bus4.getCapacity());
+    ArrayList<Seat> seats4 = new ArrayList<>(bus4.getCapacity());
 
     for (int i = 0; i < bus4.getCapacity(); i++) {
       seats4.add(new Seat());
@@ -161,7 +161,7 @@ public class Configuration implements ApplicationRunner {
     busTrip5.setDate("2022-01-01");
     busTrip5.setTime("15h43");
 
-    ArrayList<Seat> seats5 = new ArrayList<Seat>(bus5.getCapacity());
+    ArrayList<Seat> seats5 = new ArrayList<>(bus5.getCapacity());
 
     for (int i = 0; i < bus5.getCapacity(); i++) {
       seats5.add(new Seat());
@@ -181,7 +181,7 @@ public class Configuration implements ApplicationRunner {
     busTrip6.setDate("2003-01-06");
     busTrip6.setTime("17h23");
 
-    ArrayList<Seat> seats6 = new ArrayList<Seat>(bus6.getCapacity());
+    ArrayList<Seat> seats6 = new ArrayList<>(bus6.getCapacity());
 
     for (int i = 0; i < bus6.getCapacity(); i++) {
       seats6.add(new Seat());

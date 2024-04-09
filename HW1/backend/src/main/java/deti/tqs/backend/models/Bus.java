@@ -16,7 +16,9 @@ public class Bus {
   private String name;
   private int capacity;
 
-  public Bus() {}
+  public Bus() {
+    // Empty constructor needed for JPA
+  }
 
   public int getId() {
     return id;

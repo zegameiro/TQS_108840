@@ -32,7 +32,7 @@ public class TestsBusController {
   private BusService busService;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     Bus bus1 = new Bus();
     bus1.setId(1);
     bus1.setCapacity(30);
@@ -62,7 +62,7 @@ public class TestsBusController {
 
   @Test
   @DisplayName("Test endpoint get a list containing all the buses")
-  public void testGetAllBuses() throws Exception {
+  void testGetAllBuses() throws Exception {
     mvc.perform(get("/api/bus/getAll").contentType("application/json"))
       .andExpect(status().isOk())
       .andExpect(content().contentType("application/json"))
@@ -75,7 +75,7 @@ public class TestsBusController {
 
   @Test
   @DisplayName("Test endpoint get a bus by id")
-  public void testGetBusById() throws Exception {
+  void testGetBusById() throws Exception {
     mvc.perform(get("/api/bus/get?id=1").contentType("application/json"))
       .andExpect(status().isOk())
       .andExpect(content().contentType("application/json"))
@@ -89,7 +89,7 @@ public class TestsBusController {
 
   @Test
   @DisplayName("Test endpoint get a bus by id that does not exist")
-  public void testGetBusByIdNotFound() throws Exception {
+  void testGetBusByIdNotFound() throws Exception {
     mvc.perform(get("/api/bus/get?id=5").contentType("application/json"))
       .andExpect(status().isNotFound());
   }

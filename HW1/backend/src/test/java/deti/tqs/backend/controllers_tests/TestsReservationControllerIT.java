@@ -49,7 +49,7 @@ public class TestsReservationControllerIT {
   private BusTrip busTrip2 = new BusTrip();
 
   @BeforeAll
-  public void setUp() {
+  void setUp() {
     
     Bus bus1 = new Bus();
     bus1.setId(1);
@@ -131,7 +131,7 @@ public class TestsReservationControllerIT {
   @SuppressWarnings("null")
   @Test
   @DisplayName("Test if all the reservations are retrieved correctly")
-  public void testGetReservations() throws Exception {
+  void testGetReservations() throws Exception {
 
     ResponseEntity<Reservation[]> response = restTemplate.getForEntity("/api/reservations/list", Reservation[].class);
     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -144,7 +144,7 @@ public class TestsReservationControllerIT {
   @SuppressWarnings("null")
   @Test 
   @DisplayName("Test create a reservation with success")
-  public void testCreateReservation() throws Exception {
+  void testCreateReservation() throws Exception {
     Reservation res1 = new Reservation();
     res1.setFirstName("John");
     res1.setLastName("Smith");
@@ -160,7 +160,7 @@ public class TestsReservationControllerIT {
 
   @Test
   @DisplayName("Test create 2 tickets for the same trip and seat")
-  public void testCreateReservationSameSeat() throws Exception {
+  void testCreateReservationSameSeat() throws Exception {
     Reservation res1 = new Reservation();
     res1.setFirstName("John");
     res1.setLastName("Smith");
@@ -175,7 +175,7 @@ public class TestsReservationControllerIT {
 
   @Test
   @DisplayName("Test create a reservation with invalid email")
-  public void testCreateReservationInvalidEmail() throws Exception {
+  void testCreateReservationInvalidEmail() throws Exception {
     Reservation res1 = new Reservation();
     res1.setFirstName("John");
     res1.setLastName("Smith");
@@ -190,7 +190,7 @@ public class TestsReservationControllerIT {
 
   @Test
   @DisplayName("Test create a reservation with invalid phone")
-  public void testCreateReservationInvalidPhone() throws Exception {
+  void testCreateReservationInvalidPhone() throws Exception {
     Reservation res1 = new Reservation();
     res1.setFirstName("John");
     res1.setLastName("Smith");
@@ -205,7 +205,7 @@ public class TestsReservationControllerIT {
 
   @Test 
   @DisplayName("Test create a reservation with invalid trip id")
-  public void testCreateReservationInvalidTripId() throws Exception {
+  void testCreateReservationInvalidTripId() throws Exception {
     Reservation res1 = new Reservation();
     res1.setFirstName("John");
     res1.setLastName("Smith");

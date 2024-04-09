@@ -20,7 +20,7 @@ public class TestReservationRepository {
 
   @Test
   @DisplayName("When a new reservation is saved, then it should be found it by its ID")
-  public void whenNewReservationSaved_thenFindById() {
+  void whenNewReservationSaved_thenFindById() {
     Reservation reservation = new Reservation();
     reservation.setSeat(1);
     reservation.setIdBusTrip(1);
@@ -39,7 +39,7 @@ public class TestReservationRepository {
 
   @Test
   @DisplayName("When a new reservation is saved, then it should be found by its seat number and bus trip ID")
-  public void whenNewReservationSaved_thenFindBySeatAndIdBusTrip() {
+  void whenNewReservationSaved_thenFindBySeatAndIdBusTrip() {
     Reservation reservation = new Reservation();
     reservation.setSeat(2);
     reservation.setIdBusTrip(2);
@@ -59,7 +59,7 @@ public class TestReservationRepository {
 
   @Test
   @DisplayName("When several reservations are saved and its searched with the seat number and the ID of the bus Trip, then it should return a list containing all the added reservations") 
-  public void whenMultipleReservationsSaved_thenFindBySeatAndIdBusTrip() {
+  void whenMultipleReservationsSaved_thenFindBySeatAndIdBusTrip() {
     Reservation reservation1 = new Reservation();
     reservation1.setSeat(3);
     reservation1.setIdBusTrip(3);
@@ -84,7 +84,7 @@ public class TestReservationRepository {
 
   @Test
   @DisplayName("When its searched for a reservation by the ID of the bus Trip, then it should return a list containing all the added reservations")
-  public void whenMultipleReservationsSaved_thenFindByIdBusTrip() {
+  void whenMultipleReservationsSaved_thenFindByIdBusTrip() {
     Reservation reservation1 = new Reservation();
     reservation1.setSeat(3);
     reservation1.setIdBusTrip(3);
@@ -121,7 +121,7 @@ public class TestReservationRepository {
 
   @Test
   @DisplayName("When it exists multiple reservations, then it should return a list containing all the added reservations")
-  public void whenMultipleReservationsSaved_thenFindAll() {
+  void whenMultipleReservationsSaved_thenFindAll() {
     Reservation reservation1 = new Reservation();
     reservation1.setSeat(3);
     reservation1.setIdBusTrip(3);

@@ -36,7 +36,7 @@ public class CurrencyExchangeService {
   public boolean cacheExchangeRates(Map<String, Object> rates) {
     cachedRates = rates;
     lastCaching = System.currentTimeMillis();
-    logger.info("Rates cached successfully at " + lastCaching + " with ttl " + cachedTtl);
+    logger.info("Rates cached successfully at {0} with ttl {1}", lastCaching, cachedTtl);
     return true;
   }
 

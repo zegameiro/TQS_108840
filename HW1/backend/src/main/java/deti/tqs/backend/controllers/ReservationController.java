@@ -39,12 +39,12 @@ public class ReservationController {
   private ReservationFormValidator reservationFormValidator;
 
   @PostMapping("/buy")
-  public ResponseEntity<Reservation> buyReservation(@RequestBody Reservation reservation) {
+  ResponseEntity<Reservation> buyReservation(@RequestBody Reservation reservation) {
 
-    logger.info("Buying reservation for trip" + reservation.getIdBusTrip() + " and seat " + reservation.getSeat());
+    logger.info("Buying reservation for trip %d, and seat %d", reservation.getIdBusTrip(), reservation.getSeat());
 
     if (!busTripService.tripExists(reservation.getIdBusTrip())) {
-      logger.error("Could not find trip with id " + reservation.getIdBusTrip());
+      logger.error("Could not find trip with id {}",reservation.getIdBusTrip());
       throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Trip not found!");
     }
 
@@ -78,7 +78,7 @@ public class ReservationController {
   }
 
   @GetMapping("/list")
-  public ResponseEntity<List<Reservation>> listReservations() {
+  ResponseEntity<List<Reservation>> listReservations() {
     List<Reservation> reservations = reservationService.findAllTickets();
     logger.info("List of reservations requested");
     return ResponseEntity.ok(reservations);

@@ -30,7 +30,7 @@ public class TestsBusService {
 
   @Test
   @DisplayName("When a new bus is saved, then it should be find it by its ID")
-  public void whenNewBusSaved_thenFindById() {
+  void whenNewBusSaved_thenFindById() {
     Bus bus = new Bus();
     bus.setName("Flix Bus 1");
     bus.setCapacity(50);
@@ -44,7 +44,7 @@ public class TestsBusService {
 
   @Test
   @DisplayName("Check get all buses")
-  public void checkGetAllBuses() {
+  void checkGetAllBuses() {
     Bus bus1 = new Bus();
     bus1.setName("Flix Bus 3");
     bus1.setCapacity(78);
@@ -66,7 +66,7 @@ public class TestsBusService {
 
   @Test
   @DisplayName("Check save bus")
-  public void checkSaveBus() {
+  void checkSaveBus() {
     Bus bus = new Bus();
     bus.setName("Flix Bus 6");
     bus.setCapacity(60);

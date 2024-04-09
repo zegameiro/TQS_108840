@@ -28,9 +28,9 @@ public class BusController {
   private BusService busService;
 
   @GetMapping("/get")
-  public ResponseEntity<Bus> getBus(@RequestParam int id) {
+  ResponseEntity<Bus> getBus(@RequestParam int id) {
     Bus b = busService.getBusById(id);
-    logger.info("Bus with id " + id + " requested");
+    logger.info("Bus with id {} requested", id);
 
     if (b != null)
       return ResponseEntity.ok(b);
@@ -39,15 +39,15 @@ public class BusController {
   }
 
   @GetMapping("/getAll")
-  public ResponseEntity<Iterable<Bus>> listAllBuses() {
+  ResponseEntity<Iterable<Bus>> listAllBuses() {
     logger.info("List of buses requested");
     return ResponseEntity.ok(busService.getAllBuses());
   }
 
   @PostMapping("/add")
-  public ResponseEntity<Bus> addBus(@RequestBody Bus bus) {
+  ResponseEntity<Bus> addBus(@RequestBody Bus bus) {
     Bus b = busService.addBus(bus);
-    logger.info("Adding bus with name " + b.getName() );
+    logger.info("Adding bus with name {} ",b.getName());
     return ResponseEntity.ok(b);
   }
 }

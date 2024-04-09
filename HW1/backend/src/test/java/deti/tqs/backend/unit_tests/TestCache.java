@@ -12,7 +12,7 @@ public class TestCache {
 
   @Test
   @DisplayName("Check when time to live expires the cache is invalid, otherwise the cache must be valid")
-  public void testCacheAfterTimetoLiveExpires() throws Exception {
+  void testCacheAfterTimetoLiveExpires() throws Exception {
     currencyService.exchange("EUR", "USD");
     assertThat(currencyService.checkCache()).isTrue();
 
@@ -22,7 +22,7 @@ public class TestCache {
 
   @Test
   @DisplayName("Check if the list of currencies has the right values EUR and USD")
-  public void testListCurrencies() throws Exception {
+  void testListCurrencies() throws Exception {
     assertThat(currencyService.listCurrencies()).contains("EUR", "USD");
   }
 

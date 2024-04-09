@@ -35,7 +35,7 @@ public class TestsReservationService {
 
   @Test
   @DisplayName("Check if all the reservations are returned")
-  public void testGetAllReservations() {
+  void testGetAllReservations() {
 
     Reservation r1 = new Reservation();
     Reservation r2 = new Reservation();
@@ -50,7 +50,7 @@ public class TestsReservationService {
 
   @Test
   @DisplayName("Test if a reservation is returned, when searched by its id")
-  public void testGetReservationById() {
+  void testGetReservationById() {
     Reservation r = new Reservation();
 
     when(reservationRepository.findByIdBusTrip(1)).thenReturn(List.of(r));
@@ -62,7 +62,7 @@ public class TestsReservationService {
 
   @Test
   @DisplayName("Test if a seat is available")
-  public void testSeatIsAvailable() {
+  void testSeatIsAvailable() {
     when(reservationRepository.findBySeatAndIdBusTrip(1, 1)).thenReturn(null);
     when(reservationRepository.findBySeatAndIdBusTrip(1, 2)).thenReturn(new Reservation());
 
@@ -74,7 +74,7 @@ public class TestsReservationService {
 
   @Test
   @DisplayName("Test the method to buy a reservation when given invalid data")
-  public void testBuyReservation() {
+  void testBuyReservation() {
     Reservation res = new Reservation();
     res.setFirstName("John");
     res.setLastName("Doe");

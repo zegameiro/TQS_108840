@@ -20,7 +20,7 @@ public class CurrencyExchangeService {
   private static final Logger logger = LoggerFactory.getLogger(CurrencyExchangeService.class);
 
   private Set<String> currencies;
-  public Map<String, Object> cachedRates = new HashMap<String, Object>();
+  public Map<String, Object> cachedRates = new HashMap<>();
   private int cachedTtl = 3600 * 1000;
   private long lastCaching = 0;
   private String apiKey = "a0c7aedc93a1123e9d9b2c72";
@@ -30,7 +30,7 @@ public class CurrencyExchangeService {
 
   public CurrencyExchangeService(int ttl) {
     cachedTtl = ttl;
-    cachedRates = new HashMap<String, Object>();
+    cachedRates = new HashMap<>();
   }
 
   public boolean cacheExchangeRates(Map<String, Object> rates) {

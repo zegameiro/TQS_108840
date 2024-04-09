@@ -2,7 +2,6 @@ package deti.tqs.backend.configuration;
 
 import java.util.ArrayList;
 
-import org.hibernate.mapping.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +32,6 @@ public class Configuration implements ApplicationRunner {
   public void run(ApplicationArguments args) throws Exception {
 
     logger.info("Creating default values");
-
-    String firstClass = "First Class";
 
     Bus bus1 = new Bus();
     bus1.setName("Flix Bux 1");

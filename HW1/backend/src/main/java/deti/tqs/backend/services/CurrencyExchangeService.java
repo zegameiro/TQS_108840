@@ -95,6 +95,7 @@ public class CurrencyExchangeService {
 
     return rate;
   }
+  
 
   public String request(String link) throws Exception {
 
@@ -110,9 +111,8 @@ public class CurrencyExchangeService {
 
     StringBuilder content = new StringBuilder();
 
-    while ((inputLine = in.readLine()) != null) {
+    while ((inputLine = in.readLine()) != null)
       content.append(inputLine);
-    }
 
     in.close();
     connection.disconnect();

@@ -13,7 +13,7 @@ public class Seat {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
-  private String seatType = "economic";
+  private String seatType = "Economic";
   private boolean isTaken;
 
   public Seat() {}

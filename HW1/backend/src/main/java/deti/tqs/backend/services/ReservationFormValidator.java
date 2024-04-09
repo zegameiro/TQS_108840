@@ -11,11 +11,11 @@ public class ReservationFormValidator {
 
   public boolean validateEmail(String email) {
     logger.info("Validating email " + email);
-    return email.matches("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$");
+    return email.matches("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z0-9.-]+$");
   }
 
   public boolean validatePhone(String phone) {
     logger.info("Validating phone " + phone);
-    return String.valueOf(phone).matches("^[0-9]{9}$");
+    return String.valueOf(phone).matches("^[0-9]{9}$") && phone.length() == 9;
   }
 }

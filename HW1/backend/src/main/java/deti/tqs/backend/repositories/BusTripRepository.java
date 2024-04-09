@@ -34,8 +34,6 @@ public interface BusTripRepository extends CrudRepository<BusTrip, Integer>{
 
   public List<BusTrip> findByDate(String date);
 
-  public List<BusTrip> findByTime(String time);
-
   public void deleteByFromCity(String fromCity);
 
   public void deleteByToCity(String toCity);

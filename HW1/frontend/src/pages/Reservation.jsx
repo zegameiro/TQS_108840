@@ -185,7 +185,7 @@ const Reservation = () => {
                   <button
                     disabled={seat.isTaken}
                     className={`btn ${
-                      seat.seatType === "economic"
+                      seat.seatType === "Economic"
                         ? "btn-secondary"
                         : "btn-primary"
                     } ${selectedSeat&& selectedSeat.id === seat.id ? "": "btn-outline"}`}

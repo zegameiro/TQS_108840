@@ -278,8 +278,8 @@ public class TestBusTripService {
 
     List<BusTrip> found = busTripRepository.findByToCity(busTrip1.getToCity());
 
-    assertThat(found.size()).isEqualTo(1);
-    assertThat(found).contains(busTrip1);
+    assertThat(found.size()).isEqualTo(2);
+    assertThat(found).contains(busTrip1, busTrip2);
   }
 
 }

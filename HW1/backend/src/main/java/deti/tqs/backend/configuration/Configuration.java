@@ -17,6 +17,7 @@ import deti.tqs.backend.repositories.BusRepository;
 import deti.tqs.backend.repositories.BusTripRepository;
 
 @Component
+@Generated
 @ConditionalOnProperty(name = "spring.profiles.active", havingValue = "dev")
 public class Configuration implements ApplicationRunner {
   

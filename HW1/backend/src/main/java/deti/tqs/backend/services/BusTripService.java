@@ -46,8 +46,6 @@ public class BusTripService {
 
     busTrip.setPrice(busTrip.getPrice() * exchangeRate);
 
-    logger.info("Trip requested in currency {}", currency);
-
     return busTrip;
   }
 

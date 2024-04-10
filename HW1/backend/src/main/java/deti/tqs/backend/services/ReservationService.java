@@ -17,14 +17,17 @@ public class ReservationService {
   
   private static final Logger logger = LoggerFactory.getLogger(ReservationService.class);
 
-  @Autowired
   private ReservationRepository reservationRepository;
-
-  @Autowired
   private BusTripRepository busTripRepository;
 
+  @Autowired
+  public ReservationService(ReservationRepository reservationRepository, BusTripRepository busTripRepository) {
+    this.reservationRepository = reservationRepository;
+    this.busTripRepository = busTripRepository;
+  }
+
   public boolean checkSeatAvailable(int tripId, int seatNumber) {
-    logger.info("Checking if seat {0} is available for trip {1}", seatNumber, tripId);
+    logger.info("Checking if seat {} is available for trip {}", seatNumber, tripId);
     return reservationRepository.findBySeatAndIdBusTrip(seatNumber, tripId) == null;
   }
 

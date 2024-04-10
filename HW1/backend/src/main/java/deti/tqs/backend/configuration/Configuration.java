@@ -23,11 +23,14 @@ public class Configuration implements ApplicationRunner {
   
   private static final Logger logger = LoggerFactory.getLogger(Configuration.class);
 
-  @Autowired
   private BusRepository busRepository;
+  private BusTripRepository busTripRepository;
 
   @Autowired
-  private BusTripRepository busTripRepository;
+  public Configuration(BusRepository busRepository, BusTripRepository busTripRepository) {
+    this.busRepository = busRepository;
+    this.busTripRepository = busTripRepository;
+  }
 
   @Override
   public void run(ApplicationArguments args) throws Exception {

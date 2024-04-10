@@ -29,19 +29,21 @@ public class ReservationController {
   
   private static final Logger logger = LoggerFactory.getLogger(ReservationController.class);
 
-  @Autowired
   private ReservationService reservationService;
-
-  @Autowired
   private BusTripService busTripService;
+  private ReservationFormValidator reservationFormValidator;
 
   @Autowired
-  private ReservationFormValidator reservationFormValidator;
+  public ReservationController(ReservationService reservationService, BusTripService busTripService, ReservationFormValidator reservationFormValidator) {
+    this.reservationService = reservationService;
+    this.busTripService = busTripService;
+    this.reservationFormValidator = reservationFormValidator;
+  }
 
   @PostMapping("/buy")
   ResponseEntity<Reservation> buyReservation(@RequestBody Reservation reservation) {
 
-    logger.info("Buying reservation for trip %d, and seat %d", reservation.getIdBusTrip(), reservation.getSeat());
+    logger.info("Buying reservation for trip {}, and seat {}", reservation.getIdBusTrip(), reservation.getSeat());
 
     if (!busTripService.tripExists(reservation.getIdBusTrip())) {
       logger.error("Could not find trip with id {}",reservation.getIdBusTrip());

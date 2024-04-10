@@ -23,7 +23,7 @@ import deti.tqs.backend.services.CurrencyExchangeService;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
-public class TestsBustripService {
+class TestsBustripService {
   
   @Mock
   private BusTripRepository busTripRepository;

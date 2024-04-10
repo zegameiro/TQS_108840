@@ -28,19 +28,20 @@ import deti.tqs.backend.repositories.ReservationRepository;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = "spring.profiles.active=test")
 @AutoConfigureTestDatabase
 @TestInstance(Lifecycle.PER_CLASS)
-public class TestsReservationControllerIT {
+class TestsReservationControllerIT {
   
-  @Autowired
   private TestRestTemplate restTemplate;
-
-  @Autowired
   private ReservationRepository reservationRepository;
+  private BusTripRepository busTripRepository;
+  private BusRepository busRepository;
 
   @Autowired
-  private BusTripRepository busTripRepository;
-
-  @Autowired 
-  private BusRepository busRepository;
+  TestsReservationControllerIT(TestRestTemplate restTemplate, ReservationRepository reservationRepository, BusTripRepository busTripRepository, BusRepository busRepository) {
+    this.restTemplate = restTemplate;
+    this.reservationRepository = reservationRepository;
+    this.busTripRepository = busTripRepository;
+    this.busRepository = busRepository;
+  }
 
   private Reservation reservation1 =new Reservation();
   private Reservation reservation2 =new Reservation();

@@ -13,10 +13,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 
 @DataJpaTest
-public class TestReservationRepository {
+class TestReservationRepository {
   
-  @Autowired
   private ReservationRepository reservationRepository;
+
+  @Autowired
+  public TestReservationRepository(ReservationRepository reservationRepository) {
+    this.reservationRepository = reservationRepository;
+  }
 
   @Test
   @DisplayName("When a new reservation is saved, then it should be found it by its ID")
@@ -115,7 +119,7 @@ public class TestReservationRepository {
 
     List<Reservation> found = reservationRepository.findByIdBusTrip(reservation1.getIdBusTrip());
 
-    assertThat(found.size()).isEqualTo(2);
+    assertThat(found).hasSize(2);
     assertThat(found).contains(reservation1, reservation3);
   }
 
@@ -141,7 +145,7 @@ public class TestReservationRepository {
     reservationRepository.save(reservation1);
     reservationRepository.save(reservation2);
 
-    assertThat(reservationRepository.findAll().size()).isEqualTo(2);
+    assertThat(reservationRepository.findAll()).hasSize(2);
     assertThat(reservationRepository.findAll()).contains(reservation1, reservation2);
   }
 }

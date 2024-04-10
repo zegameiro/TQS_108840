@@ -16,11 +16,14 @@ public class BusTripService {
   
   private static final Logger logger = LoggerFactory.getLogger(BusTripService.class);
 
-  @Autowired
   private BusTripRepository busTripRepository;
+  private CurrencyExchangeService currencyExchangeService;
 
   @Autowired
-  public CurrencyExchangeService currencyExchangeService;
+  public BusTripService(BusTripRepository busTripRepository, CurrencyExchangeService currencyExchangeService) {
+    this.busTripRepository = busTripRepository;
+    this.currencyExchangeService = currencyExchangeService;
+  }
 
   public boolean tripExists(int busTripId) {
     return busTripRepository.existsById(busTripId);
@@ -43,7 +46,7 @@ public class BusTripService {
 
     busTrip.setPrice(busTrip.getPrice() * exchangeRate);
 
-    logger.info("Trip with id %d requested in currency %d", id, currency);
+    logger.info("Trip with id {} requested in currency {}", id, currency);
 
     return busTrip;
   }

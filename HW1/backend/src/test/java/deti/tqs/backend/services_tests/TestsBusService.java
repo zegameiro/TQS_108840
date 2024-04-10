@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
-public class TestsBusService {
+class TestsBusService {
 
   @Mock
   private BusRepository busRepository;

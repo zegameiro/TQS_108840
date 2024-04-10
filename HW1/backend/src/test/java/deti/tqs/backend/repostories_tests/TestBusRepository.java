@@ -10,10 +10,14 @@ import deti.tqs.backend.repositories.BusRepository;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-public class TestBusRepository {
-  
-  @Autowired
+class TestBusRepository {
+
   private BusRepository busRepository;
+
+  @Autowired
+  public TestBusRepository(BusRepository busRepository) {
+    this.busRepository = busRepository;
+  }
 
   @Test
   @DisplayName("When a new bus is saved, then it should be find it by its ID")

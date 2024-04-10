@@ -24,8 +24,12 @@ public class BusController {
 
   private static final Logger logger = LoggerFactory.getLogger(BusController.class);
 
-  @Autowired
   private BusService busService;
+
+  @Autowired
+  public BusController(BusService busService) {
+    this.busService = busService;
+  }
 
   @GetMapping("/get")
   ResponseEntity<Bus> getBus(@RequestParam int id) {

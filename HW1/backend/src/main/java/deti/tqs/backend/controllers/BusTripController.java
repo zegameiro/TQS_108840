@@ -22,8 +22,12 @@ public class BusTripController {
   
   private static final Logger logger = LoggerFactory.getLogger(BusTripController.class);
 
-  @Autowired
   private BusTripService busTripService;
+
+  @Autowired
+  public BusTripController(BusTripService busTripService) {
+    this.busTripService = busTripService;
+  }
 
   @GetMapping("/get")
   ResponseEntity<List<BusTrip>> listBusTrips(@RequestParam(required = false) String fromCity, @RequestParam(required = false) String toCity, @RequestParam(required = false) String date, @RequestParam(required = false) String currency) {

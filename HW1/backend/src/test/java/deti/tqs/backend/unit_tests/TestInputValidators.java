@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import deti.tqs.backend.services.ReservationFormValidator;
 
-public class TestInputValidators {
+class TestInputValidators {
 
   @Test
   @DisplayName("Check if the email has a valid format it should return true")

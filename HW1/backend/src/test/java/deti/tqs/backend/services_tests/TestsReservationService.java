@@ -22,7 +22,7 @@ import deti.tqs.backend.repositories.ReservationRepository;
 import deti.tqs.backend.services.ReservationService;
 
 @ExtendWith(MockitoExtension.class)
-public class TestsReservationService {
+class TestsReservationService {
   
   @Mock
   private ReservationRepository reservationRepository;

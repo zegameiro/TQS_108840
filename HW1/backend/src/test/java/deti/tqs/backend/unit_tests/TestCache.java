@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import deti.tqs.backend.services.CurrencyExchangeService;
 
-public class TestCache {
+class TestCache {
   
   private static CurrencyExchangeService currencyService = new CurrencyExchangeService(6000);
 

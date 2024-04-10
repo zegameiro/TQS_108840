@@ -23,8 +23,12 @@ public class TestsBusControllerIT {
   @LocalServerPort
   int randomServerPort;
 
-  @Autowired
   private TestRestTemplate restTemplate;
+  
+  @Autowired
+  public TestsBusControllerIT(TestRestTemplate restTemplate) {
+    this.restTemplate = restTemplate;
+  }
 
   @SuppressWarnings("null")
   @Test

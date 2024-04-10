@@ -41,7 +41,7 @@ public class BusTripController {
   @GetMapping("/get_bus_trip")
   ResponseEntity<BusTrip> getBusTrip(@RequestParam int id, @RequestParam(required = false) String currency) {
     BusTrip busTrip = busTripService.getBusTripById(id, currency);
-    logger.info("Bus trip with id {} requested", id);
+    logger.info("Bus trip requested");
     return ResponseEntity.ok(busTrip);
   }
 

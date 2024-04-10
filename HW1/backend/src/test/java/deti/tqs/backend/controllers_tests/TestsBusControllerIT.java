@@ -1,6 +1,7 @@
 package deti.tqs.backend.controllers_tests;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ import deti.tqs.backend.models.Bus;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = "spring.profiles.active=test")
 @AutoConfigureTestDatabase
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TestsBusControllerIT {
+class TestsBusControllerIT {
   
   @LocalServerPort
   int randomServerPort;
@@ -26,7 +27,7 @@ public class TestsBusControllerIT {
   private TestRestTemplate restTemplate;
   
   @Autowired
-  public TestsBusControllerIT(TestRestTemplate restTemplate) {
+  TestsBusControllerIT(TestRestTemplate restTemplate) {
     this.restTemplate = restTemplate;
   }
 
@@ -39,8 +40,11 @@ public class TestsBusControllerIT {
     bus.setCapacity(74);
 
     ResponseEntity<Bus> response = restTemplate.postForEntity("/api/bus/add", bus, Bus.class);
-    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-    assertThat(response.getBody().getName()).isEqualTo("Flix Bus 1");
-    assertThat(response.getBody().getCapacity()).isEqualTo(74);
+
+    assertAll(
+      () -> assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK),
+      () -> assertThat(response.getBody().getName()).isEqualTo("Flix Bus 1"),
+      () -> assertThat(response.getBody().getCapacity()).isEqualTo(74)
+    );
   }
 }

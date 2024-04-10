@@ -34,7 +34,7 @@ public class BusController {
   @GetMapping("/get")
   ResponseEntity<Bus> getBus(@RequestParam int id) {
     Bus b = busService.getBusById(id);
-    logger.info("Bus with id {} requested", id);
+    logger.info("Bus requested");
 
     if (b != null)
       return ResponseEntity.ok(b);

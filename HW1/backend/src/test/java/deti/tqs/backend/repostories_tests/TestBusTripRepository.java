@@ -9,6 +9,7 @@ import deti.tqs.backend.models.BusTrip;
 import deti.tqs.backend.repositories.BusTripRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 
@@ -37,8 +38,10 @@ class TestBusTripRepository {
 
     BusTrip found = busTripRepository.findById(busTrip.getId());
 
-    assertThat(found.getId()).isEqualTo(busTrip.getId());
-    assertThat(found).isEqualTo(busTrip);
+    assertAll(
+      () -> assertThat(found.getId()).isEqualTo(busTrip.getId()),
+      () -> assertThat(found).isEqualTo(busTrip)
+    );
   }
 
   @Test
@@ -81,8 +84,10 @@ class TestBusTripRepository {
     busTripRepository.save(busTrip3);
     busTripRepository.save(busTrip4);
 
-    assertThat(busTripRepository.findAll()).hasSize(4);
-    assertThat(busTripRepository.findAll()).contains(busTrip1, busTrip2, busTrip3);
+    assertAll(
+      () -> assertThat(busTripRepository.findAll()).hasSize(4),
+      () -> assertThat(busTripRepository.findAll()).contains(busTrip1, busTrip2, busTrip3, busTrip4)
+    );
   }
 
   @Test
@@ -100,8 +105,10 @@ class TestBusTripRepository {
 
     List<BusTrip> found = busTripRepository.findByFromCity(busTrip.getFromCity());
 
-    assertThat(found).hasSize(1);
-    assertThat(found).contains(busTrip);
+    assertAll(
+      () -> assertThat(found).hasSize(1),
+      () -> assertThat(found.get(0)).isEqualTo(busTrip)
+    );
   }
 
   @Test
@@ -128,8 +135,10 @@ class TestBusTripRepository {
 
     List<BusTrip> found = busTripRepository.findByToCity(busTrip1.getToCity());
 
-    assertThat(found).hasSize(2);
-    assertThat(found).contains(busTrip1, busTrip2);
+    assertAll(
+      () -> assertThat(found).hasSize(2),
+      () -> assertThat(found).contains(busTrip1, busTrip2)
+    );
   }
 
   @Test
@@ -166,8 +175,10 @@ class TestBusTripRepository {
 
     List<BusTrip> found = busTripRepository.findByDate(busTrip1.getDate());
 
-    assertThat(found).hasSize(3);
-    assertThat(found).contains(busTrip1, busTrip2, busTrip3);
+    assertAll(
+      () -> assertThat(found).hasSize(3),
+      () -> assertThat(found).contains(busTrip1, busTrip2, busTrip3)
+    );
   }
 
   @Test
@@ -187,8 +198,10 @@ class TestBusTripRepository {
 
     List<BusTrip> found = busTripRepository.findByFromCity(busTrip.getFromCity());
 
-    assertThat(found.size()).isZero();
-    assertThat(found).doesNotContain(busTrip);
+    assertAll(
+      () -> assertThat(found).isEmpty(),
+      () -> assertThat(found).doesNotContain(busTrip)
+    );
   }
 
   @Test
@@ -217,8 +230,10 @@ class TestBusTripRepository {
 
     List<BusTrip> found = busTripRepository.findByToCity(busTrip1.getToCity());
 
-    assertThat(found.size()).isZero();
-    assertThat(found).doesNotContain(busTrip1, busTrip2);
+    assertAll(
+      () -> assertThat(found).isEmpty(),
+      () -> assertThat(found).doesNotContain(busTrip1, busTrip2)
+    );
   }
 
   @Test
@@ -245,8 +260,10 @@ class TestBusTripRepository {
 
     List<BusTrip> found = busTripRepository.findByFromCity(busTrip1.getFromCity());
 
-    assertThat(found).hasSize(2);
-    assertThat(found).contains(busTrip1, busTrip2);
+    assertAll(
+      () -> assertThat(found).hasSize(2),
+      () -> assertThat(found).contains(busTrip1, busTrip2)
+    );
   }
 
   @Test
@@ -282,8 +299,10 @@ class TestBusTripRepository {
 
     List<BusTrip> found = busTripRepository.findByToCity(busTrip1.getToCity());
 
-    assertThat(found).hasSize(2);
-    assertThat(found).contains(busTrip1, busTrip2);
+    assertAll(
+      () -> assertThat(found).hasSize(2),
+      () -> assertThat(found).contains(busTrip1, busTrip2)
+    );
   }
 
 }

@@ -1,6 +1,7 @@
 package deti.tqs.backend.unit_tests;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,8 +21,11 @@ class TestInputValidators {
   @DisplayName("Check if the email has a invalid format it should return false")
   void whenInvalidEmail_ReturnFalse() {
     ReservationFormValidator validator = new ReservationFormValidator();
-    assertThat(validator.validateEmail("adriana@gmail")).isFalse();
-    assertThat(validator.validateEmail("adriana.pt")).isFalse();
+
+    assertAll(
+      () -> assertThat(validator.validateEmail("adriana@gmail")).isFalse(),
+      () -> assertThat(validator.validateEmail("adriana.pt")).isFalse()
+    );
   }
 
   @Test
@@ -35,7 +39,9 @@ class TestInputValidators {
   @DisplayName("Check if the phone has a invalid size")
   void whenInvalidPhone_ReturnFalse() {
     ReservationFormValidator validator = new ReservationFormValidator();
-    assertThat(validator.validatePhone("91234567")).isFalse();
-    assertThat(validator.validatePhone("9123456789")).isFalse();
+    assertAll(
+      () -> assertThat(validator.validatePhone("91234567")).isFalse(),
+      () -> assertThat(validator.validatePhone("9123456789")).isFalse()
+    );
   } 
 }

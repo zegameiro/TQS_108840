@@ -10,12 +10,12 @@ public class ReservationFormValidator {
   private static final Logger logger = LoggerFactory.getLogger(ReservationFormValidator.class);
 
   public boolean validateEmail(String email) {
-    logger.info("Validating email {}", email);
+    logger.info("Validating email");
     return email.matches("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z0-9.-]+$");
   }
 
   public boolean validatePhone(String phone) {
-    logger.info("Validating phone {}", phone);
+    logger.info("Validating phone");
     return String.valueOf(phone).matches("^[0-9]{9}$") && phone.length() == 9;
   }
 }

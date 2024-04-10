@@ -1,5 +1,7 @@
 package deti.tqs.backend.repostories_tests;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +46,10 @@ class TestBusRepository {
 
     Bus found = busRepository.findByName(bus.getName());
 
-    assertThat(found.getName()).isEqualTo(bus.getName());
-    assertThat(found).isEqualTo(bus);
+    assertAll(
+      () -> assertThat(found.getName()).isEqualTo(bus.getName()),
+      () -> assertThat(found).isEqualTo(bus)
+    );
   }
 
   @Test
@@ -67,8 +71,10 @@ class TestBusRepository {
     busRepository.save(bus2);
     busRepository.save(bus3);
 
-    assertThat(busRepository.findAll().size()).isEqualTo(3);
-    assertThat(busRepository.findAll()).contains(bus1, bus2, bus3);
+    assertAll(
+      () -> assertThat(busRepository.findAll()).hasSize(3),
+      () -> assertThat(busRepository.findAll()).contains(bus1, bus2, bus3)
+    );
   }
 
   @Test

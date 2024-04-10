@@ -21,6 +21,7 @@ import deti.tqs.backend.services.BusTripService;
 import deti.tqs.backend.services.CurrencyExchangeService;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 @ExtendWith(MockitoExtension.class)
 class TestsBustripService {
@@ -109,8 +110,10 @@ class TestsBustripService {
     when(busTripRepository.findByFromCityAndToCityAndDate("Lisboa", "Porto", "2021-06-03")).thenReturn(List.of());
     when(busTripRepository.findByFromCityAndToCityAndDate("Leiria", "Batalha", "2005-10-30")).thenReturn(List.of(busTrip1));
     
-    assertThat(busTripService.listFilteredTrips("Lisboa", "Porto", "2021-06-03", "USD")).isEmpty();
-    assertThat(busTripService.listFilteredTrips("Leiria", "Batalha", "2005-10-30", "EUR")).contains(busTrip1);
+    assertAll(
+      () -> assertThat(busTripService.listFilteredTrips("Lisboa", "Porto", "2021-06-03", "USD")).isEmpty(),
+      () -> assertThat(busTripService.listFilteredTrips("Leiria", "Batalha", "2005-10-30", "EUR")).contains(busTrip1)
+    );
 
     verify(busTripRepository, times(2)).findByFromCityAndToCityAndDate(anyString(), anyString(), anyString());
   }

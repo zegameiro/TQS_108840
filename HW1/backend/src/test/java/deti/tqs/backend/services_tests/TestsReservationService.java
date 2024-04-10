@@ -6,6 +6,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 
@@ -66,8 +67,10 @@ class TestsReservationService {
     when(reservationRepository.findBySeatAndIdBusTrip(1, 1)).thenReturn(null);
     when(reservationRepository.findBySeatAndIdBusTrip(1, 2)).thenReturn(new Reservation());
 
-    assertThat(reservationService.checkSeatAvailable(1, 1)).isTrue();
-    assertThat(reservationService.checkSeatAvailable(2, 1)).isFalse();
+    assertAll(
+      () -> assertThat(reservationService.checkSeatAvailable(1, 1)).isTrue(),
+      () -> assertThat(reservationService.checkSeatAvailable(2, 1)).isFalse()
+    );
 
     verify(reservationRepository, times(2)).findBySeatAndIdBusTrip(anyInt(), anyInt());
   }

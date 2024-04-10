@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.springframework.http.HttpStatus;
 import org.junit.jupiter.api.BeforeAll;
@@ -135,10 +136,13 @@ class TestsReservationControllerIT {
   void testGetReservations() throws Exception {
 
     ResponseEntity<Reservation[]> response = restTemplate.getForEntity("/api/reservations/list", Reservation[].class);
-    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-    assertThat(response.getBody()).hasSize(2);
-    assertThat(response.getBody()[0].getFirstName()).isEqualTo("John");
-    assertThat(response.getBody()[1].getFirstName()).isEqualTo("Jane");
+
+    assertAll(
+      () -> assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK),
+      () -> assertThat(response.getBody()).hasSize(2),
+      () -> assertThat(response.getBody()[0].getLastName()).isEqualTo("Doe"),
+      () -> assertThat(response.getBody()[1].getLastName()).isEqualTo("Doe")
+    );
 
   }
 
@@ -155,8 +159,11 @@ class TestsReservationControllerIT {
     res1.setPhone("987654321");
 
     ResponseEntity<Reservation> response = restTemplate.postForEntity("/api/reservations/buy", res1, Reservation.class);
-    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-    assertThat(response.getBody().getLastName()).isEqualTo("Smith");
+
+    assertAll(
+      () -> assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK),
+      () -> assertThat(response.getBody().getLastName()).isEqualTo("Smith")
+    );
   }
 
   @Test

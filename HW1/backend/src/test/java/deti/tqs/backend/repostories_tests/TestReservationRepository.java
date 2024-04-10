@@ -9,6 +9,7 @@ import deti.tqs.backend.models.Reservation;
 import deti.tqs.backend.repositories.ReservationRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ class TestReservationRepository {
   private ReservationRepository reservationRepository;
 
   @Autowired
-  public TestReservationRepository(ReservationRepository reservationRepository) {
+  TestReservationRepository(ReservationRepository reservationRepository) {
     this.reservationRepository = reservationRepository;
   }
 
@@ -37,8 +38,10 @@ class TestReservationRepository {
 
     Reservation found = reservationRepository.findById(reservation.getId());
 
-    assertThat(found.getId()).isEqualTo(reservation.getId());
-    assertThat(found).isEqualTo(reservation);
+    assertAll(
+      () -> assertThat(found.getId()).isEqualTo(reservation.getId()),
+      () -> assertThat(found).isEqualTo(reservation)
+    );
   }
 
   @Test
@@ -56,9 +59,11 @@ class TestReservationRepository {
 
     Reservation found = reservationRepository.findBySeatAndIdBusTrip(reservation.getSeat(), reservation.getIdBusTrip());
 
-    assertThat(found.getSeat()).isEqualTo(reservation.getSeat());
-    assertThat(found.getIdBusTrip()).isEqualTo(reservation.getIdBusTrip());
-    assertThat(found).isEqualTo(reservation);
+    assertAll(
+      () -> assertThat(found.getSeat()).isEqualTo(reservation.getSeat()),
+      () -> assertThat(found.getIdBusTrip()).isEqualTo(reservation.getIdBusTrip()),
+      () -> assertThat(found).isEqualTo(reservation)
+    );
   }
 
   @Test
@@ -119,8 +124,10 @@ class TestReservationRepository {
 
     List<Reservation> found = reservationRepository.findByIdBusTrip(reservation1.getIdBusTrip());
 
-    assertThat(found).hasSize(2);
-    assertThat(found).contains(reservation1, reservation3);
+    assertAll(
+      () -> assertThat(found).hasSize(2),
+      () -> assertThat(found).contains(reservation1, reservation3)
+    );
   }
 
   @Test
@@ -145,7 +152,9 @@ class TestReservationRepository {
     reservationRepository.save(reservation1);
     reservationRepository.save(reservation2);
 
-    assertThat(reservationRepository.findAll()).hasSize(2);
-    assertThat(reservationRepository.findAll()).contains(reservation1, reservation2);
+    assertAll(
+      () -> assertThat(reservationRepository.findAll()).hasSize(2),
+      () -> assertThat(reservationRepository.findAll()).contains(reservation1, reservation2)
+    );
   }
 }

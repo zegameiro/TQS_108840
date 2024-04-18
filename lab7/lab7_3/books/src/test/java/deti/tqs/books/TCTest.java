@@ -1,7 +1,5 @@
 package deti.tqs.books;
 
-import static org.junit.Assert.assertThat;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
